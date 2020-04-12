@@ -7,15 +7,13 @@ to upload images to imgur.com.
 
 Simply drag and drop image to the status bar icon.
 
-![Upload screenshot](https://user-images.githubusercontent.com/939390/79070959-948d5e80-7ce1-11ea-97d0-f4c4d99731a4.gif)
-
 Automatic screenshots uploading is also supported
 
 # HowTo use
 
 - clone repo
 - obtain `CLIENT_ID` at [api.imgur.com](https://api.imgur.com/oauth2/addclient)
-- insert in `Client.swift` file
+- insert in [Client.swift](https://github.com/ailinykh/ImgurBar/blob/master/ImgurBar/Client.swift#L13) file
 - build an app
 
 # Thanks
