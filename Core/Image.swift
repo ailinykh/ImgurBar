@@ -1,5 +1,5 @@
 //
-//  ImageUploader.swift
+//  Image.swift
 //  ImgurBar
 //
 //  Created by Anton Ilinykh on 31.10.2021.
@@ -8,6 +8,10 @@
 
 import Foundation
 
-protocol ImageUploader {
-    func upload(image: LocalImage, completion: @escaping (RemoteImage, Error) -> Void)
+struct LocalImage {
+    let fileUrl: URL
+}
+
+struct RemoteImage {
+    let url: URL
 }

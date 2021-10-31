@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		730A29FF272E9DFF00515A69 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A29FE272E9DFF00515A69 /* ImageUploader.swift */; };
+		730A2A01272EA05700515A69 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A2A00272EA05700515A69 /* Image.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		730A29FE272E9DFF00515A69 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		730A2A00272EA05700515A69 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				730A29FE272E9DFF00515A69 /* ImageUploader.swift */,
+				730A2A00272EA05700515A69 /* Image.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730A2A01272EA05700515A69 /* Image.swift in Sources */,
 				73F9DBDA2440FC8A00BD9CEE /* DraggableView.swift in Sources */,
 				737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */,
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
