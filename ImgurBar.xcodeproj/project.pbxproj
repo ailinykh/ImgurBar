@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		730A29FF272E9DFF00515A69 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A29FE272E9DFF00515A69 /* ImageUploader.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		730A29FE272E9DFF00515A69 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,9 +44,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		730A29FD272E9DD900515A69 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				730A29FE272E9DFF00515A69 /* ImageUploader.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		73757188243B1CF5000B84FD = {
 			isa = PBXGroup;
 			children = (
+				730A29FD272E9DD900515A69 /* Core */,
 				73757193243B1CF5000B84FD /* ImgurBar */,
 				73757192243B1CF5000B84FD /* Products */,
 			);
@@ -159,6 +170,7 @@
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
 				73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */,
 				73F9DBD824405B9600BD9CEE /* Client.swift in Sources */,
+				730A29FF272E9DFF00515A69 /* ImageUploader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
