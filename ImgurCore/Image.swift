@@ -8,10 +8,14 @@
 
 import Foundation
 
-struct LocalImage {
+public struct LocalImage {
     let fileUrl: URL
+    
+    public init(fileUrl: URL) {
+        self.fileUrl = fileUrl
+    }
 }
 
-struct RemoteImage {
+public struct RemoteImage {
     let url: URL
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HTTPClient {
+public protocol HTTPClient {
     typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
     
     func upload(data: Data, to: URL, completion: @escaping (Result) -> Void)

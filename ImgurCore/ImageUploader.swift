@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ImageUploader {
+public protocol ImageUploader {
     func upload(image: LocalImage, completion: @escaping (RemoteImage?, Error?) -> Void)
 }
