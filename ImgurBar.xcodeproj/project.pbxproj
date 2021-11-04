@@ -10,6 +10,7 @@
 		730A29FF272E9DFF00515A69 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A29FE272E9DFF00515A69 /* ImageUploader.swift */; };
 		730A2A01272EA05700515A69 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A2A00272EA05700515A69 /* Image.swift */; };
 		730A2A03272EA37800515A69 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A2A02272EA37800515A69 /* HTTPClient.swift */; };
+		730A2A0C272EA80900515A69 /* ImgurBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A2A0B272EA80900515A69 /* ImgurBarTests.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
@@ -20,10 +21,22 @@
 		73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		730A2A0D272EA80900515A69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73757189243B1CF5000B84FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73757190243B1CF5000B84FD;
+			remoteInfo = ImgurBar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		730A29FE272E9DFF00515A69 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		730A2A00272EA05700515A69 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		730A2A02272EA37800515A69 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		730A2A09272EA80900515A69 /* ImgurBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImgurBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		730A2A0B272EA80900515A69 /* ImgurBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurBarTests.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +51,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		730A2A06272EA80900515A69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7375718E243B1CF5000B84FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,11 +78,28 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		730A2A04272EA7E200515A69 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		730A2A0A272EA80900515A69 /* ImgurBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				730A2A0B272EA80900515A69 /* ImgurBarTests.swift */,
+			);
+			path = ImgurBarTests;
+			sourceTree = "<group>";
+		};
 		73757188243B1CF5000B84FD = {
 			isa = PBXGroup;
 			children = (
+				730A2A04272EA7E200515A69 /* API */,
 				730A29FD272E9DD900515A69 /* Core */,
 				73757193243B1CF5000B84FD /* ImgurBar */,
+				730A2A0A272EA80900515A69 /* ImgurBarTests */,
 				73757192243B1CF5000B84FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				73757191243B1CF5000B84FD /* ImgurBar.app */,
+				730A2A09272EA80900515A69 /* ImgurBarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +141,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		730A2A08272EA80900515A69 /* ImgurBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 730A2A0F272EA80900515A69 /* Build configuration list for PBXNativeTarget "ImgurBarTests" */;
+			buildPhases = (
+				730A2A05272EA80900515A69 /* Sources */,
+				730A2A06272EA80900515A69 /* Frameworks */,
+				730A2A07272EA80900515A69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				730A2A0E272EA80900515A69 /* PBXTargetDependency */,
+			);
+			name = ImgurBarTests;
+			productName = ImgurBarTests;
+			productReference = 730A2A09272EA80900515A69 /* ImgurBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		73757190243B1CF5000B84FD /* ImgurBar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 737571A4243B1CF6000B84FD /* Build configuration list for PBXNativeTarget "ImgurBar" */;
@@ -126,10 +182,14 @@
 		73757189243B1CF5000B84FD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Anton Ilinykh";
 				TargetAttributes = {
+					730A2A08272EA80900515A69 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 73757190243B1CF5000B84FD;
+					};
 					73757190243B1CF5000B84FD = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -149,11 +209,19 @@
 			projectRoot = "";
 			targets = (
 				73757190243B1CF5000B84FD /* ImgurBar */,
+				730A2A08272EA80900515A69 /* ImgurBarTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		730A2A07272EA80900515A69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7375718F243B1CF5000B84FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +235,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		730A2A05272EA80900515A69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				730A2A0C272EA80900515A69 /* ImgurBarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7375718D243B1CF5000B84FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,6 +260,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		730A2A0E272EA80900515A69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73757190243B1CF5000B84FD /* ImgurBar */;
+			targetProxy = 730A2A0D272EA80900515A69 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		7375719D243B1CF6000B84FD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -196,6 +280,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		730A2A10272EA80900515A69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ailinykh.ImgurBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImgurBar.app/Contents/MacOS/ImgurBar";
+			};
+			name = Debug;
+		};
+		730A2A11272EA80900515A69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ailinykh.ImgurBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImgurBar.app/Contents/MacOS/ImgurBar";
+			};
+			name = Release;
+		};
 		737571A2243B1CF6000B84FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -358,6 +492,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		730A2A0F272EA80900515A69 /* Build configuration list for PBXNativeTarget "ImgurBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				730A2A10272EA80900515A69 /* Debug */,
+				730A2A11272EA80900515A69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7375718C243B1CF5000B84FD /* Build configuration list for PBXProject "ImgurBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
