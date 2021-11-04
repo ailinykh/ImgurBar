@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ImageUploader {
-    func upload(image: LocalImage, completion: @escaping (RemoteImage, Error) -> Void)
+    func upload(image: LocalImage, completion: @escaping (RemoteImage?, Error?) -> Void)
 }
