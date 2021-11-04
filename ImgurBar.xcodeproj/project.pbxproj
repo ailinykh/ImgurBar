@@ -126,13 +126,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		730A2A0A272EA80900515A69 /* ImgurBarTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ImgurBarTests;
-			sourceTree = "<group>";
-		};
 		733A84B72734673E00789747 /* ImgurCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				73757193243B1CF5000B84FD /* ImgurBar */,
-				730A2A0A272EA80900515A69 /* ImgurBarTests */,
 				733A84B72734673E00789747 /* ImgurCore */,
 				733A84C32734673E00789747 /* ImgurCoreTests */,
 				73757192243B1CF5000B84FD /* Products */,
