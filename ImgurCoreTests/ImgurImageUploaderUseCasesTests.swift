@@ -11,8 +11,9 @@ import ImgurCore
 
 final class ImgurImageUploader: ImageUploader {
     
-    func upload(image: LocalImage, completion: @escaping (RemoteImage?, Error?) -> Void) {
-        completion(nil, nil)
+    func upload(image: LocalImage, completion: @escaping (ImageUploader.Result) -> Void) {
+        let anError = NSError(domain: "error", code: 0)
+        completion(.failure(anError))
     }
 }
 
@@ -24,7 +25,7 @@ class ImgurImageUploaderUseCasesTests: XCTestCase {
         let localImage = LocalImage(fileUrl: fileUrl)
         let exp = XCTestExpectation(description: "image upload expectation")
         
-        sut.upload(image: localImage) { image, _ in
+        sut.upload(image: localImage) { result in
             exp.fulfill()
         }
         
