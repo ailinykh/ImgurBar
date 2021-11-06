@@ -12,19 +12,26 @@ import ImgurCore
 final class ImgurImageUploader: ImageUploader {
     
     func upload(from: URL, completion: @escaping (ImageUploader.Result) -> Void) {
-        let anError = NSError(domain: "error", code: 0)
-        completion(.failure(anError))
+        let url = URL(string: "a-remote-image-url")!
+        completion(.success(url))
     }
 }
 
 class ImgurImageUploaderUseCasesTests: XCTestCase {
 
-    func test_upload_deliversRemoteImage() {
+    func test_upload_deliversRemoteImageURL() {
         let sut = ImgurImageUploader()
         let fileUrl = URL(fileURLWithPath: "a-path")
+        let remoteImageUrl = URL(string: "a-remote-image-url")!
         let exp = XCTestExpectation(description: "image upload expectation")
         
         sut.upload(from: fileUrl) { result in
+            switch result {
+            case .failure:
+                XCTFail("Expected succes but gor error")
+            case .success(let url):
+                XCTAssertEqual(url, remoteImageUrl)
+            }
             exp.fulfill()
         }
         
