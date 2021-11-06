@@ -20,5 +20,5 @@ public protocol ImageUploader {
     /// - Parameters:
     ///     - from: The local image URL
     ///     - completion: The completion handler that receives the ``Result`` of operation
-    func upload(from: URL, completion: @escaping (Result) -> Void)
+    func upload(url: URL, completion: @escaping (Result) -> Void)
 }
