@@ -11,5 +11,5 @@ import Foundation
 public protocol HTTPClient {
     typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
     
-    func upload(data: Data, to: URL, completion: @escaping (Result) -> Void)
+    func perform(request: URLRequest, completion: @escaping (Result) -> Void)
 }
