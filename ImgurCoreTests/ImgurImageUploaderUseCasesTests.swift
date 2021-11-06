@@ -36,8 +36,13 @@ final class ImgurImageUploader: ImageUploader {
         request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
             switch result {
-            case .success(let (_, _)):
-                completion(.success(URL(string: "a-remote-image-url")!))
+            case .success(let (data, _)):
+                do {
+                    let response = try JSONDecoder().decode(Response.self, from: data)
+                    completion(.success(URL(string: response.data.link)!))
+                } catch {
+                    // TODO: - failure case
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -61,19 +66,19 @@ class ImgurImageUploaderUseCasesTests: XCTestCase {
     func test_upload_deliversRemoteImageURL() {
         let (sut, client) = makeSUT()
         let fileUrl = URL(fileURLWithPath: "a-path")
-        let remoteImageUrl = URL(string: "a-remote-image-url")!
+        let remoteImageUrl = URL(string: "some-remote-image-url")!
         let exp = XCTestExpectation(description: "image upload expectation")
         
         sut.upload(url: fileUrl) { result in
             switch result {
-            case .failure:
-                XCTFail("Expected succes but gor error")
+            case .failure(let error):
+                XCTFail("Expected success but got error: \(error)")
             case .success(let url):
                 XCTAssertEqual(url, remoteImageUrl)
             }
             exp.fulfill()
         }
-        client.complete(with: makeResponseData(for: remoteImageUrl), response: HTTPURLResponse())
+        client.complete(with: makeResponseData(for: remoteImageUrl), response: .any)
         
         wait(for: [exp], timeout: 0.1)
     }
@@ -81,18 +86,17 @@ class ImgurImageUploaderUseCasesTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeResponseData(for url: URL) -> Data {
-        let json = """
-        {
-            "data": {
+        let json = [
+            "data": [
                 "id": "id",
                 "type": "type",
                 "link": "\(url.absoluteString)"
-            },
-            "success": true,
+            ],
+            "success": false,
             "status": 0
-        }
-        """
-        return try! JSONEncoder().encode(json)
+        ].compactMapValues { $0 }
+        
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     private func makeSUT() -> (sut: ImgurImageUploader, client: HTTPClientSpy) {
