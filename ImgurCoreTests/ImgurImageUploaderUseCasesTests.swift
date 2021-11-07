@@ -92,7 +92,7 @@ class ImgurImageUploaderUseCasesTests: XCTestCase {
                 "type": "type",
                 "link": "\(url.absoluteString)"
             ],
-            "success": false,
+            "success": true,
             "status": 0
         ].compactMapValues { $0 }
         
@@ -101,7 +101,7 @@ class ImgurImageUploaderUseCasesTests: XCTestCase {
     
     private func makeSUT() -> (sut: ImgurImageUploader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = ImgurImageUploader(client: client, clientId: "CLIENT_ID")
+        let sut = ImgurImageUploader(client: client, clientId: "SECRET_CLIENT_ID")
         return (sut, client)
     }
 }
