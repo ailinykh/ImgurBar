@@ -41,7 +41,7 @@ final class ImgurImageUploader: ImageUploader {
                     let response = try JSONDecoder().decode(Response.self, from: data)
                     completion(.success(URL(string: response.data.link)!))
                 } catch {
-                    // TODO: - failure case
+                    completion(.failure(error))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -79,6 +79,25 @@ class ImgurImageUploaderUseCasesTests: XCTestCase {
             exp.fulfill()
         }
         client.complete(with: makeResponseData(for: remoteImageUrl), response: .any)
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
+    func test_upload_deliversErrorOnInvalidJSON() {
+        let (sut, client) = makeSUT()
+        let fileUrl = URL(fileURLWithPath: "a-path")
+        let exp = XCTestExpectation(description: "image upload expectation")
+        
+        sut.upload(url: fileUrl) { result in
+            switch result {
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            case .success(let url):
+                XCTFail("Expected error but got success: \(url)")
+            }
+            exp.fulfill()
+        }
+        client.complete(with: "invalid json".data(using: .utf8)!, response: .any)
         
         wait(for: [exp], timeout: 0.1)
     }
