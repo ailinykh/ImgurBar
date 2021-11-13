@@ -1,5 +1,5 @@
 //
-//  ImgurImageUploaderUseCasesTests.swift
+//  ImgurUploaderUseCasesTests.swift
 //  ImgurCoreTests
 //
 //  Created by Anton Ilinykh on 04.11.2021.
@@ -55,7 +55,7 @@ final class ImgurImageUploader: ImageUploader {
     }
 }
 
-class ImgurImageUploaderUseCaseTests: XCTestCase {
+class ImgurUploaderUseCaseTests: XCTestCase {
     
     func test_upload_setAuthorizationHeader() {
         let (sut, client) = makeSUT()

@@ -1,5 +1,5 @@
 //
-//  ImgurImageUploaderUsecaseTests+Helpers.swift
+//  ImgurUploaderUsecaseTests+Helpers.swift
 //  ImgurCoreTests
 //
 //  Created by Anton Ilinykh on 13.11.2021.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-extension ImgurImageUploaderUseCaseTests {
+extension ImgurUploaderUseCaseTests {
     func expect(_ sut: ImgurImageUploader, toCompleteWith expectedResult: Swift.Result<URL, ImgurImageUploader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let expectation = expectation(description: "Wait for upload completion")
         let fileUrl = URL(fileURLWithPath: "a-path")
