@@ -12,9 +12,12 @@ import ImgurCore
 final class ImgurImageUploader: ImageUploader {
     
     struct ResponseData: Decodable {
-        var id: String
-        var type: String
-        var link: String
+        var id: String?
+        var type: String?
+        var link: String?
+        var error: String?
+        var request: String?
+        var method: String?
     }
     
     struct Response: Decodable {
@@ -44,7 +47,11 @@ final class ImgurImageUploader: ImageUploader {
             case .success(let (data, _)):
                 do {
                     let response = try JSONDecoder().decode(Response.self, from: data)
-                    completion(.success(URL(string: response.data.link)!))
+                    
+                    guard let link = response.data.link, let url = URL(string: link) else {
+                        throw Error.invalidData
+                    }
+                    completion(.success(url))
                 } catch {
                     completion(.failure(Error.invalidData))
                 }
@@ -84,9 +91,29 @@ class ImgurUploaderUseCaseTests: XCTestCase {
             client.complete(with: "invalid json".data(using: .utf8)!, response: .any)
         }
     }
+    
+    func test_upload_deliversErrorOnApiError() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWith: .failure(.invalidData)) {
+            client.complete(with: makeResponseError(), response: .any)
+        }
+    }
 
     // MARK: - Helpers
-    private typealias Result = Swift.Result<URL, Error>
+    private func makeResponseError(code: UInt = 400, message: String = "Bad Request") -> Data {
+        let json = [
+            "data": [
+                "error": message,
+                "request": "/3/upload",
+                "method": "POST"
+            ],
+            "success": false,
+            "status": code
+        ].compactMapValues { $0 }
+        
+        return try! JSONSerialization.data(withJSONObject: json)
+    }
     
     private func makeResponseData(for url: URL) -> Data {
         let json = [
