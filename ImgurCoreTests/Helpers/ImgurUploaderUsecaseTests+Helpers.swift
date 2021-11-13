@@ -1,5 +1,5 @@
 //
-//  ImgurUploaderUsecaseTests+Helpers.swift
+//  ImgurUploaderUseCaseTests+Helpers.swift
 //  ImgurCoreTests
 //
 //  Created by Anton Ilinykh on 13.11.2021.
@@ -7,9 +7,10 @@
 //
 
 import XCTest
+import ImgurCore
 
 extension ImgurUploaderUseCaseTests {
-    func expect(_ sut: ImgurImageUploader, toCompleteWith expectedResult: Swift.Result<URL, ImgurImageUploader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: ImgurUploader, toCompleteWith expectedResult: Swift.Result<URL, ImgurUploader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let expectation = expectation(description: "Wait for upload completion")
         let fileUrl = URL(fileURLWithPath: "a-path")
         
@@ -17,7 +18,7 @@ extension ImgurUploaderUseCaseTests {
             switch (receivedResult, expectedResult) {
             case let (.success(receivedURL), .success(expectedUrl)):
                 XCTAssertEqual(receivedURL, expectedUrl, file: file, line: line)
-            case let (.failure(receivedError as ImgurImageUploader.Error), .failure(expectedError)):
+            case let (.failure(receivedError as ImgurUploader.Error), .failure(expectedError)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
             default:
                 XCTFail("Expected result \(expectedResult) but got \(receivedResult)", file: file, line: line)

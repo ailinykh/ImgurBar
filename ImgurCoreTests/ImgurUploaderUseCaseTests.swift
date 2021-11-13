@@ -1,5 +1,5 @@
 //
-//  ImgurUploaderUseCasesTests.swift
+//  ImgurUploaderUseCaseTests.swift
 //  ImgurCoreTests
 //
 //  Created by Anton Ilinykh on 04.11.2021.
@@ -8,59 +8,6 @@
 
 import XCTest
 import ImgurCore
-
-final class ImgurImageUploader: ImageUploader {
-    
-    struct ResponseData: Decodable {
-        var id: String?
-        var type: String?
-        var link: String?
-        var error: String?
-        var request: String?
-        var method: String?
-    }
-    
-    struct Response: Decodable {
-        var data: ResponseData
-        var success: Bool
-        var status: Int
-    }
-    
-    enum Error: Swift.Error {
-        case connectivity
-        case invalidData
-    }
-    
-    let client: HTTPClient
-    let clientId: String
-    
-    init(client: HTTPClient, clientId: String) {
-        self.client = client
-        self.clientId = clientId
-    }
-    
-    func upload(url: URL, completion: @escaping (ImageUploader.Result) -> Void) {
-        var request = URLRequest(url: url)
-        request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
-        client.perform(request: request) { result in
-            switch result {
-            case .success(let (data, _)):
-                do {
-                    let response = try JSONDecoder().decode(Response.self, from: data)
-                    
-                    guard let link = response.data.link, let url = URL(string: link) else {
-                        throw Error.invalidData
-                    }
-                    completion(.success(url))
-                } catch {
-                    completion(.failure(Error.invalidData))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-}
 
 class ImgurUploaderUseCaseTests: XCTestCase {
     
@@ -129,9 +76,9 @@ class ImgurUploaderUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func makeSUT() -> (sut: ImgurImageUploader, client: HTTPClientSpy) {
+    private func makeSUT() -> (sut: ImgurUploader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = ImgurImageUploader(client: client, clientId: "SECRET_CLIENT_ID")
+        let sut = ImgurUploader(client: client, clientId: "SECRET_CLIENT_ID")
         return (sut, client)
     }
 }
