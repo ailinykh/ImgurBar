@@ -46,7 +46,7 @@ final class ImgurImageUploader: ImageUploader {
                     let response = try JSONDecoder().decode(Response.self, from: data)
                     completion(.success(URL(string: response.data.link)!))
                 } catch {
-                    completion(.failure(error))
+                    completion(.failure(Error.invalidData))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -70,44 +70,23 @@ class ImgurUploaderUseCaseTests: XCTestCase {
 
     func test_upload_deliversRemoteImageURL() {
         let (sut, client) = makeSUT()
-        let fileUrl = URL(fileURLWithPath: "a-path")
         let remoteImageUrl = URL(string: "some-remote-image-url")!
-        let exp = XCTestExpectation(description: "image upload expectation")
         
-        sut.upload(url: fileUrl) { result in
-            switch result {
-            case .failure(let error):
-                XCTFail("Expected success but got error: \(error)")
-            case .success(let url):
-                XCTAssertEqual(url, remoteImageUrl)
-            }
-            exp.fulfill()
+        expect(sut, toCompleteWith: .success(remoteImageUrl)) {
+            client.complete(with: makeResponseData(for: remoteImageUrl), response: .any)
         }
-        client.complete(with: makeResponseData(for: remoteImageUrl), response: .any)
-        
-        wait(for: [exp], timeout: 0.1)
     }
     
     func test_upload_deliversErrorOnInvalidJSON() {
         let (sut, client) = makeSUT()
-        let fileUrl = URL(fileURLWithPath: "a-path")
-        let exp = XCTestExpectation(description: "image upload expectation")
         
-        sut.upload(url: fileUrl) { result in
-            switch result {
-            case .failure(let error):
-                XCTAssertNotNil(error)
-            case .success(let url):
-                XCTFail("Expected error but got success: \(url)")
-            }
-            exp.fulfill()
+        expect(sut, toCompleteWith: .failure(.invalidData)) {
+            client.complete(with: "invalid json".data(using: .utf8)!, response: .any)
         }
-        client.complete(with: "invalid json".data(using: .utf8)!, response: .any)
-        
-        wait(for: [exp], timeout: 0.1)
     }
 
     // MARK: - Helpers
+    private typealias Result = Swift.Result<URL, Error>
     
     private func makeResponseData(for url: URL) -> Data {
         let json = [
