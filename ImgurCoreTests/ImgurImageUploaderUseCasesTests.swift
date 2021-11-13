@@ -23,6 +23,11 @@ final class ImgurImageUploader: ImageUploader {
         var status: Int
     }
     
+    enum Error: Swift.Error {
+        case connectivity
+        case invalidData
+    }
+    
     let client: HTTPClient
     let clientId: String
     
