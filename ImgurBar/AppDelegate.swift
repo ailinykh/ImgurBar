@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var subscriptions = Set<AnyCancellable>()
     private var statusBarItem: NSStatusItem?
-    private let observer = ScreenshotsObserver()
+//    private let observer = ScreenshotsObserver()
     private let view = DraggableView(frame: .zero)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -28,8 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let client = Client()
         
-        observer.screenshotsPubliser
-            .merge(with: view.imagePublisher)
+//        observer.screenshotsPubliser
+//            .merge(with: view.imageDataPublisher)
+        view.imageUrlPublisher
             .handleEvents(receiveOutput: { [unowned self] _ in
                 self.statusBarItem?.button?.startAnimation()
             })
@@ -68,6 +69,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         view.frame = statusBarItem?.button?.frame ?? .zero
         statusBarItem!.button?.addSubview(view)
+    }
+    
+    var settings: NSWindowController?
+}
+
+extension AppDelegate {
+    func application(_ application: NSApplication, open urls: [URL]) {
+        print(#function, urls)
+    }
+    
+    @IBAction func authorize(_ sender: AnyObject) {
+        if settings == nil {
+            let storyboard = NSStoryboard(name: "settings", bundle: .main)
+            settings = storyboard.instantiateInitialController()
+        }
+        
+        guard let settings = settings, let window = settings.window else {
+            preconditionFailure("settings window must not be nil")
+        }
+//        settings.showWindow(sender)
+        window.makeKeyAndOrderFront(sender)
+        window.makeFirstResponder(nil)
+        print(window.isKeyWindow, window.isOnActiveSpace)
     }
 }
 

@@ -11,7 +11,8 @@ import Combine
 
 class DraggableView: NSView {
 
-    let imagePublisher = PassthroughSubject<Data, Never>()
+    let imageDataPublisher = PassthroughSubject<Data, Never>()
+    let imageUrlPublisher = PassthroughSubject<URL, Never>()
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -24,21 +25,25 @@ class DraggableView: NSView {
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-        return .copy
+        if NSImage.canInit(with: sender.draggingPasteboard) {
+            return .copy
+        }
+        return .private
     }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        let pboard = sender.draggingPasteboard
-        
-        if
-            NSImage.canInit(with: pboard),
-            let image = NSImage(pasteboard: pboard),
-            let data = image.tiffRepresentation
-        {
-            imagePublisher.send(data)
-            return true
+        var rv = false
+        sender.draggingPasteboard.readObjects(forClasses: [NSURL.self])?.forEach {
+            if let url = $0 as? URL {
+                imageUrlPublisher.send(url)
+                
+                if let data = try? Data(contentsOf: url) {
+                    imageDataPublisher.send(data)
+                }
+                
+                rv = true
+            }
         }
-        
-        return false
+        return rv
     }
 }

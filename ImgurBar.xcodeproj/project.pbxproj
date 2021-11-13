@@ -20,6 +20,9 @@
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
 		737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */; };
+		73F5D03C273F08E50005CE1D /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F5D03B273F08E50005CE1D /* settings.storyboard */; };
+		73F5D03E273F090B0005CE1D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D03D273F090B0005CE1D /* SettingsViewController.swift */; };
+		73F5D04027400F720005CE1D /* ImgurUploaderUsecaseTests+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D03F27400F710005CE1D /* ImgurUploaderUsecaseTests+Helpers.swift */; };
 		73F9DBD824405B9600BD9CEE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F9DBD724405B9600BD9CEE /* Client.swift */; };
 		73F9DBDA2440FC8A00BD9CEE /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F9DBD92440FC8A00BD9CEE /* DraggableView.swift */; };
 		73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */; };
@@ -87,6 +90,9 @@
 		737571A0243B1CF6000B84FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		737571A1243B1CF6000B84FD /* imgurBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imgurBar.entitlements; sourceTree = "<group>"; };
 		737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsObserver.swift; sourceTree = "<group>"; };
+		73F5D03B273F08E50005CE1D /* settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = settings.storyboard; sourceTree = "<group>"; };
+		73F5D03D273F090B0005CE1D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		73F5D03F27400F710005CE1D /* ImgurUploaderUsecaseTests+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImgurUploaderUsecaseTests+Helpers.swift"; sourceTree = "<group>"; };
 		73F9DBD724405B9600BD9CEE /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		73F9DBD92440FC8A00BD9CEE /* DraggableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
 		73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSButton+Animation.swift"; sourceTree = "<group>"; };
@@ -180,6 +186,8 @@
 				737571A0243B1CF6000B84FD /* Info.plist */,
 				7375719D243B1CF6000B84FD /* Main.storyboard */,
 				7375719A243B1CF6000B84FD /* Preview Content */,
+				73F5D03B273F08E50005CE1D /* settings.storyboard */,
+				73F5D03D273F090B0005CE1D /* SettingsViewController.swift */,
 			);
 			path = ImgurBar;
 			sourceTree = "<group>";
@@ -364,6 +372,7 @@
 				7375719F243B1CF6000B84FD /* Main.storyboard in Resources */,
 				7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */,
 				73757199243B1CF6000B84FD /* Assets.xcassets in Resources */,
+				73F5D03C273F08E50005CE1D /* settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
 				73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */,
 				73F9DBD824405B9600BD9CEE /* Client.swift in Sources */,
+				73F5D03E273F090B0005CE1D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
