@@ -55,7 +55,7 @@ final class ImgurImageUploader: ImageUploader {
     }
 }
 
-class ImgurImageUploaderUseCasesTests: XCTestCase {
+class ImgurImageUploaderUseCaseTests: XCTestCase {
     
     func test_upload_setAuthorizationHeader() {
         let (sut, client) = makeSUT()
