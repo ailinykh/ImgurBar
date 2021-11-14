@@ -10,6 +10,8 @@ import Foundation
 
 public final class ImgurUploader: ImageUploader {
     
+    private let apiUrl = URL(string: "https://api.imgur.com/3/upload")!
+    
     struct Response: Decodable {
         struct Data: Decodable {
             var id: String?
@@ -42,6 +44,7 @@ public final class ImgurUploader: ImageUploader {
     
     public func upload(url: URL, completion: @escaping (ImageUploader.Result) -> Void) {
         var request = try! builder.makeRequest(for: url)
+        request.url = apiUrl
         request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
             switch result {
