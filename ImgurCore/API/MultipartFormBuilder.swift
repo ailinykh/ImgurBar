@@ -11,8 +11,7 @@ import Foundation
 public final class MultipartFormBuilder: RequestBuilder {
     private let EOL = "\r\n"
     
-    public init() {
-    }
+    public init() {}
     
     public func makeRequest(for fileUrl: URL) throws -> URLRequest {
         let boundary = makeBoundary()
@@ -20,15 +19,14 @@ public final class MultipartFormBuilder: RequestBuilder {
         var request = URLRequest(url: fileUrl)
         request.httpMethod = "POST"
         request.httpBody = data
-        request.setValue("multipart/form-data; boundary=\(boundary)",
-                            forHTTPHeaderField: "Content-Type")
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.setValue(String(data.count), forHTTPHeaderField: "Content-Length")
         return request
     }
     
     private func makeBoundary() -> String {
-        let makeRandom = { UInt32.random(in: (.min)...(.max)) }
-        return String(format: "--------%08X%08X", makeRandom(), makeRandom())
+        let rand = { UInt32.random(in: (.min)...(.max)) }
+        return String(format: "--------%08X%08X", rand(), rand())
     }
     
     private func data(for fileUrl: URL, using boundary: String) throws -> Data {
