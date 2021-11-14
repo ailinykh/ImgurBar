@@ -78,7 +78,8 @@ class ImgurUploaderUseCaseTests: XCTestCase {
     
     private func makeSUT() -> (sut: ImgurUploader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = ImgurUploader(client: client, clientId: "SECRET_CLIENT_ID")
+        let builder = RequestBuilderStub()
+        let sut = ImgurUploader(client: client, clientId: "SECRET_CLIENT_ID", builder: builder)
         return (sut, client)
     }
 }
@@ -97,6 +98,12 @@ private final class HTTPClientSpy: HTTPClient {
     
     func complete(with data: Data, response: HTTPURLResponse, at index: Int = 0) {
         messages[index].completion(.success((data, response)))
+    }
+}
+
+private final class RequestBuilderStub: RequestBuilder {
+    func makeRequest(for fileUrl: URL) -> URLRequest {
+        URLRequest(url: fileUrl)
     }
 }
 

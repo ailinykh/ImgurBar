@@ -32,14 +32,16 @@ public final class ImgurUploader: ImageUploader {
     
     let client: HTTPClient
     let clientId: String
+    let builder: RequestBuilder
     
-    public init(client: HTTPClient, clientId: String) {
+    public init(client: HTTPClient, clientId: String, builder: RequestBuilder) {
         self.client = client
         self.clientId = clientId
+        self.builder = builder
     }
     
     public func upload(url: URL, completion: @escaping (ImageUploader.Result) -> Void) {
-        var request = URLRequest(url: url)
+        var request = try! builder.makeRequest(for: url)
         request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
             switch result {
