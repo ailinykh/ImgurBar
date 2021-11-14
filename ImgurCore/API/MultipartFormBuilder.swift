@@ -32,13 +32,12 @@ public final class MultipartFormBuilder: RequestBuilder {
     }
     
     private func data(for fileUrl: URL, using boundary: String) throws -> Data {
-        let name = fileUrl.deletingPathExtension().lastPathComponent
         let filename = fileUrl.lastPathComponent
         let mime = mimeType(for: fileUrl)
         let data = try Data(contentsOf: fileUrl)
         var body = Data()
         body.append(makeData("--" + boundary + EOL))
-        body.append(makeData("Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"" + EOL))
+        body.append(makeData("Content-Disposition: form-data; name=\"image\"; filename=\"" + filename + "\"" + EOL))
         body.append(makeData("Content-Type: " + mime + EOL + EOL))
         body.append(data)
         body.append(makeData(EOL + "--" + boundary + "--" + EOL))

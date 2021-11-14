@@ -23,7 +23,6 @@ class MultipartFormBuilderUseCaseTests: XCTestCase {
         let string = String(data: request.httpBody!, encoding: .utf8)!
         
         XCTAssertTrue(string.contains("Content-Disposition: form-data;"))
-        XCTAssertTrue(string.contains("name=\"\(fileName.split(separator: ".").first!)\";"))
         XCTAssertTrue(string.contains("filename=\"\(fileName)\""))
         XCTAssertTrue(string.contains("Content-Type: image/png"), string)
     }
