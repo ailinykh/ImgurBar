@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var subscriptions = Set<AnyCancellable>()
     private var statusBarItem: NSStatusItem?
-    private let observer = ScreenshotsObserver()
+//    private let observer = ScreenshotsObserver()
     private let view = DraggableView(frame: .zero)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -28,8 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let client = Client()
         
-        observer.screenshotsPubliser
-            .merge(with: view.imagePublisher)
+        view.imagePublisher
             .handleEvents(receiveOutput: { [unowned self] _ in
                 self.statusBarItem?.button?.startAnimation()
             })
