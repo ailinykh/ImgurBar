@@ -11,7 +11,7 @@ import ImgurCore
 
 extension ImgurUploaderUseCaseTests {
     func expect(_ sut: ImgurUploader, toCompleteWith expectedResult: Swift.Result<URL, ImgurUploader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-        let expectation = expectation(description: "Wait for upload completion")
+        let exp = expectation(description: "Wait for upload completion")
         let fileUrl = URL(fileURLWithPath: "a-path")
         
         sut.upload(fileUrl) { receivedResult in
@@ -24,7 +24,7 @@ extension ImgurUploaderUseCaseTests {
                 XCTFail("Expected result \(expectedResult) but got \(receivedResult)", file: file, line: line)
             }
             
-            expectation.fulfill()
+            exp.fulfill()
         }
         
         action()

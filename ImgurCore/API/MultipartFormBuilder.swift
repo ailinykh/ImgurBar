@@ -15,7 +15,7 @@ public final class MultipartFormBuilder: RequestBuilder {
     
     public func makeRequest(for fileUrl: URL) throws -> URLRequest {
         let boundary = makeBoundary()
-        let data = try data(for: fileUrl, using: boundary)
+        let data = try self.data(for: fileUrl, using: boundary)
         var request = URLRequest(url: fileUrl)
         request.httpMethod = "POST"
         request.httpBody = data
