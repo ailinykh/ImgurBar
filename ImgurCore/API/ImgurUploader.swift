@@ -55,7 +55,8 @@ public final class ImgurUploader: ImageUploader {
                     guard let link = response.data.link, let url = URL(string: link) else {
                         throw Error.invalidData
                     }
-                    completion(.success(url))
+                    let remoteImage = RemoteImage(url: url)
+                    completion(.success(remoteImage))
                 } catch {
                     completion(.failure(Error.invalidData))
                 }

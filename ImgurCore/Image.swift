@@ -8,10 +8,14 @@
 
 import Foundation
 
-public typealias LocalImage = URL
-public typealias RemoteImage = URL
-
-extension URL {
-    var fileUrl: URL { self }
+public struct LocalImage {
+    public let fileUrl: URL
+    
+    public init(fileUrl: URL) {
+        self.fileUrl = fileUrl
+    }
 }
 
+public struct RemoteImage {
+    public let url: URL
+}

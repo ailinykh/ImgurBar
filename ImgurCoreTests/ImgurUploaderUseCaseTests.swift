@@ -14,8 +14,8 @@ class ImgurUploaderUseCaseTests: XCTestCase {
     func test_upload_setAuthorizationHeader() {
         let (sut, client) = makeSUT()
         let fileUrl = URL(fileURLWithPath: "a-path")
-        
-        sut.upload(fileUrl) { _ in }
+        let localImage = LocalImage(fileUrl: fileUrl)
+        sut.upload(localImage) { _ in }
         client.complete(with: Data(), response: .any)
         
         let request = client.getRequest()

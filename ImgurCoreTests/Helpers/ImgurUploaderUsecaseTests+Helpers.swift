@@ -13,11 +13,12 @@ extension ImgurUploaderUseCaseTests {
     func expect(_ sut: ImgurUploader, toCompleteWith expectedResult: Swift.Result<URL, ImgurUploader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for upload completion")
         let fileUrl = URL(fileURLWithPath: "a-path")
+        let localImage = LocalImage(fileUrl: fileUrl)
         
-        sut.upload(fileUrl) { receivedResult in
+        sut.upload(localImage) { receivedResult in
             switch (receivedResult, expectedResult) {
-            case let (.success(receivedURL), .success(expectedUrl)):
-                XCTAssertEqual(receivedURL, expectedUrl, file: file, line: line)
+            case let (.success(remoteImage), .success(expectedUrl)):
+                XCTAssertEqual(remoteImage.url, expectedUrl, file: file, line: line)
             case let (.failure(receivedError as ImgurUploader.Error), .failure(expectedError)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
             default:
