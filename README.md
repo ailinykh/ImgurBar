@@ -1,5 +1,7 @@
 # ImgurBar
 
+[![macOS CI Status](https://github.com/ailinykh/ImgurBar/workflows/CI-macOS/badge.svg)](https://github.com/ailinykh/ImgurBar/actions?query=workflow%3ACI-macOS)
+
 This is an macOS menubar application that makes it easy
 to upload images to imgur.com.
 
