@@ -15,7 +15,7 @@ class ImgurUploaderUseCaseTests: XCTestCase {
         let (sut, client) = makeSUT()
         let fileUrl = URL(fileURLWithPath: "a-path")
         
-        sut.upload(url: fileUrl) { _ in }
+        sut.upload(fileUrl) { _ in }
         client.complete(with: Data(), response: .any)
         
         let request = client.getRequest()

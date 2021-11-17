@@ -42,8 +42,8 @@ public final class ImgurUploader: ImageUploader {
         self.builder = builder
     }
     
-    public func upload(url: URL, completion: @escaping (ImageUploader.Result) -> Void) {
-        var request = try! builder.makeRequest(for: url)
+    public func upload(_ localImage: LocalImage, completion: @escaping (ImageUploader.Result) -> Void) {
+        var request = try! builder.makeRequest(for: localImage.fileUrl)
         request.url = apiUrl
         request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in

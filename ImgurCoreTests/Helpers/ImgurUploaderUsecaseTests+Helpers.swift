@@ -14,7 +14,7 @@ extension ImgurUploaderUseCaseTests {
         let expectation = expectation(description: "Wait for upload completion")
         let fileUrl = URL(fileURLWithPath: "a-path")
         
-        sut.upload(url: fileUrl) { receivedResult in
+        sut.upload(fileUrl) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedURL), .success(expectedUrl)):
                 XCTAssertEqual(receivedURL, expectedUrl, file: file, line: line)

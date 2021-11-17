@@ -11,7 +11,7 @@ import Foundation
 /// A type that performs image file uploading to the remote server
 public protocol ImageUploader {
     /// The result of uploading task completion
-    typealias Result = Swift.Result<URL, Error>
+    typealias Result = Swift.Result<RemoteImage, Error>
     
     /// Uploads file to remote location
     ///
@@ -20,5 +20,5 @@ public protocol ImageUploader {
     /// - Parameters:
     ///     - from: The local image URL
     ///     - completion: The completion handler that receives the ``Result`` of operation
-    func upload(url: URL, completion: @escaping (Result) -> Void)
+    func upload(_ localImage: LocalImage, completion: @escaping (Result) -> Void)
 }
