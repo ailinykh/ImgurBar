@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7302694F2745930A005FEB37 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302694E2745930A005FEB37 /* DropView.swift */; };
+		7302695427459380005FEB37 /* DropViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302695327459380005FEB37 /* DropViewTests.swift */; };
 		733A84BE2734673E00789747 /* ImgurCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; };
 		733A84C62734673E00789747 /* ImgurCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 733A84B82734673E00789747 /* ImgurCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		733A84C92734673E00789747 /* ImgurCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; };
@@ -77,6 +79,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7302694E2745930A005FEB37 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
+		7302695327459380005FEB37 /* DropViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewTests.swift; sourceTree = "<group>"; };
 		730A29FE272E9DFF00515A69 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		730A2A00272EA05700515A69 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		730A2A02272EA37800515A69 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -138,6 +142,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7302695B27459386005FEB37 /* ImgurBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				7302695327459380005FEB37 /* DropViewTests.swift */,
+			);
+			path = ImgurBarTests;
+			sourceTree = "<group>";
+		};
 		733A84B72734673E00789747 /* ImgurCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				73757193243B1CF5000B84FD /* ImgurBar */,
+				7302695B27459386005FEB37 /* ImgurBarTests */,
 				733A84B72734673E00789747 /* ImgurCore */,
 				733A84C32734673E00789747 /* ImgurCoreTests */,
 				73757192243B1CF5000B84FD /* Products */,
@@ -196,6 +209,7 @@
 				73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */,
 				7375719A243B1CF6000B84FD /* Preview Content */,
 				737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */,
+				7302694E2745930A005FEB37 /* DropView.swift */,
 			);
 			path = ImgurBar;
 			sourceTree = "<group>";
@@ -325,6 +339,7 @@
 				TargetAttributes = {
 					730A2A08272EA80900515A69 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1240;
 						TestTargetID = 73757190243B1CF5000B84FD;
 					};
 					733A84B52734673E00789747 = {
@@ -399,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7302695427459380005FEB37 /* DropViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +451,7 @@
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
 				73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */,
 				73F9DBD824405B9600BD9CEE /* Client.swift in Sources */,
+				7302694F2745930A005FEB37 /* DropView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +497,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -490,11 +508,12 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ailinykh.ImgurBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImgurBar.app/Contents/MacOS/ImgurBar";
 			};
@@ -505,6 +524,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -515,7 +535,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ailinykh.ImgurBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
