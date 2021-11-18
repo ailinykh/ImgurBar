@@ -7,18 +7,47 @@
 //
 
 import Cocoa
-import Combine
 import UserNotifications
+import ImgurCore
+
+extension URLSession: HTTPClient {
+    public func perform(request: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) {
+        uploadTask(with: request, from: request.httpBody) { data, response, error in
+            guard let data = data, let response = response else {
+                completion(.failure(error ?? NSError(domain: "unknown error", code: 0)))
+                return
+            }
+            completion(.success((data, response)))
+        }.resume()
+    }
+}
+
+private final class LocalImageProviderFacade: LocalImageConsumer {
+    let uploader: ImageUploader
+    let completion: (ImageUploader.Result) -> Void
+    
+    init(provider: LocalImageProvider, uploader: ImageUploader, completion: @escaping (ImageUploader.Result) -> Void) {
+        self.uploader = uploader
+        self.completion = completion
+        provider.add(consumer: self)
+    }
+    
+    deinit {
+        print(#function)
+    }
+    
+    func consume(image localImage: LocalImage) {
+        uploader.upload(localImage, completion: completion)
+    }
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet var menu: NSMenu!
     
-    private var subscriptions = Set<AnyCancellable>()
     private var statusBarItem: NSStatusItem?
-//    private let observer = ScreenshotsObserver()
-    private let view = DraggableView(frame: .zero)
+    private let view = DropView(frame: .zero)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
@@ -26,38 +55,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         setupStatusBar()
         
-        let client = Client()
+        let uploader = ImgurUploader(client: URLSession.shared, clientId: "", builder: MultipartFormBuilder())
         
-        view.imagePublisher
-            .handleEvents(receiveOutput: { [unowned self] _ in
-                self.statusBarItem?.button?.startAnimation()
-            })
-            .flatMap { client.upload($0) }
-            .handleEvents(receiveOutput: { [unowned self] _ in
-                self.statusBarItem?.button?.stopAnimation()
-            })
-            .filter { $0.success }
-            .sink(receiveCompletion: { [unowned self] completion in
-                print("Completion received", completion)
-                self.statusBarItem?.button?.stopAnimation()
-            }, receiveValue: { response in
-                print("Value received", response.data.link)
-                
-                let content = UNMutableNotificationContent()
-                content.title = "Image uploaded"
-                content.body = response.data.link
-                content.sound = UNNotificationSound.default
-                content.categoryIdentifier = "IMAGE_UPLOADED"
-                
-                let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
-                
-                UNUserNotificationCenter.current().add(request) { error in
-                    if let error = error {
-                        print("Can't send notification", error)
-                    }
-                }
-            })
-            .store(in: &subscriptions)
+        LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
+            switch (result) {
+            case .success(let remoteImage):
+                self?.sendNotification(with: remoteImage)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func setupStatusBar() {
@@ -68,6 +75,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         view.frame = statusBarItem?.button?.frame ?? .zero
         statusBarItem!.button?.addSubview(view)
     }
+    
+    private func sendNotification(with remoteImage: RemoteImage) {
+        let content = UNMutableNotificationContent()
+        content.title = "Image uploaded"
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "IMAGE_UPLOADED"
+        content.body = remoteImage.url.absoluteString
+        
+        let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Can't send notification", error)
+            }
+        }
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -77,6 +100,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             if let error = error {
                 print("UNUserNotificationCenter:", authorized, error)
             }
+            print("UNUserNotificationCenter: authorized:", authorized)
         }
         
         UNUserNotificationCenter.current().delegate = self
