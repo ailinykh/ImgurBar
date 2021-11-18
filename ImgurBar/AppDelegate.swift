@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let uploader = ImgurUploader(client: URLSession.shared, clientId: "", builder: MultipartFormBuilder())
         
-        LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
+        _ = LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
             switch (result) {
             case .success(let remoteImage):
                 self?.sendNotification(with: remoteImage)
