@@ -55,7 +55,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         setupStatusBar()
         
-        let uploader = ImgurUploader(client: URLSession.shared, clientId: "", builder: MultipartFormBuilder())
+        guard let clientId = Bundle.main.infoDictionary?["imgur_client_id"] as? String else {
+            preconditionFailure("Please retreive the `client_id` from https://api.imgur.com/oauth2/addclient and add it to Info.plist for key `imgur_client_id`")
+        }
+        
+        let uploader = ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder())
         
         _ = LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
             switch (result) {
