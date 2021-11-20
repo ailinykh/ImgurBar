@@ -22,6 +22,7 @@
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
 		737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */; };
+		73D50AF52749931D00E87626 /* UserNotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50AF42749931D00E87626 /* UserNotificationProvider.swift */; };
 		73F5D04427401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D04327401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift */; };
 		73F5D04627401D950005CE1D /* ImgurUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D04527401D950005CE1D /* ImgurUploader.swift */; };
 		73F5D05227413B030005CE1D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D05127413B030005CE1D /* RequestBuilder.swift */; };
@@ -97,6 +98,7 @@
 		737571A0243B1CF6000B84FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		737571A1243B1CF6000B84FD /* imgurBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imgurBar.entitlements; sourceTree = "<group>"; };
 		737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsObserver.swift; sourceTree = "<group>"; };
+		73D50AF42749931D00E87626 /* UserNotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationProvider.swift; sourceTree = "<group>"; };
 		73F5D04327401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImgurUploaderUseCaseTests+Helpers.swift"; sourceTree = "<group>"; };
 		73F5D04527401D950005CE1D /* ImgurUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurUploader.swift; sourceTree = "<group>"; };
 		73F5D05127413B030005CE1D /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				7375719A243B1CF6000B84FD /* Preview Content */,
 				737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */,
 				7302694E2745930A005FEB37 /* DropView.swift */,
+				73D50AF42749931D00E87626 /* UserNotificationProvider.swift */,
 			);
 			path = ImgurBar;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73F9DBDA2440FC8A00BD9CEE /* DraggableView.swift in Sources */,
+				73D50AF52749931D00E87626 /* UserNotificationProvider.swift in Sources */,
 				737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */,
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
 				73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */,

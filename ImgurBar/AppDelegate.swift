@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import UserNotifications
 import ImgurCore
 
 extension URLSession: HTTPClient {
@@ -48,10 +47,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var statusBarItem: NSStatusItem?
     private let view = DropView(frame: .zero)
+    private let nontificationProvider = UserNotificationProvider()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
-        setupNotificationCenter()
         
         setupStatusBar()
         
@@ -64,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
             switch (result) {
             case .success(let remoteImage):
-                self?.sendNotification(with: remoteImage)
+                self?.nontificationProvider.sendNotification(with: remoteImage)
             case .failure(let error):
                 print(error)
             }
@@ -78,56 +76,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         view.frame = statusBarItem?.button?.frame ?? .zero
         statusBarItem!.button?.addSubview(view)
-    }
-    
-    private func sendNotification(with remoteImage: RemoteImage) {
-        let content = UNMutableNotificationContent()
-        content.title = "Image uploaded"
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "IMAGE_UPLOADED"
-        content.body = remoteImage.url.absoluteString
-        
-        let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Can't send notification", error)
-            }
-        }
-    }
-}
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    func setupNotificationCenter() {
-        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { authorized, error in
-            if let error = error {
-                print("UNUserNotificationCenter:", authorized, error)
-            }
-            print("UNUserNotificationCenter: authorized:", authorized)
-        }
-        
-        UNUserNotificationCenter.current().delegate = self
-        
-        let action = UNNotificationAction(identifier: "OPEN_URL", title: "Open", options: [])
-        
-        let category = UNNotificationCategory(identifier: "IMAGE_UPLOADED", actions: [action], intentIdentifiers: ["OPEN_URL"], hiddenPreviewsBodyPlaceholder: "", options: [])
-        
-        UNUserNotificationCenter.current().setNotificationCategories([category])
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        guard let url = URL(string: response.notification.request.content.body) else {
-            return
-        }
-            
-        if response.actionIdentifier == "OPEN_URL" {
-            NSWorkspace.shared.open(url)
-        } else {
-            NSPasteboard.general.declareTypes([.string], owner: nil)
-            if !NSPasteboard.general.setString(url.absoluteString, forType: .string) {
-                print("Can't copy to Pasteboard")
-            }
-        }
     }
 }
