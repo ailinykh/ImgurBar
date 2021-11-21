@@ -46,6 +46,15 @@ class ImgurUploaderUseCaseTests: XCTestCase {
             client.complete(with: makeResponseError(), response: .any)
         }
     }
+    
+    func test_upload_deliversInvalidClientIdError() {
+        let (sut, client) = makeSUT()
+        let error = makeResponseError(code: 403, message: "Invalid client_id")
+        
+        expect(sut, toCompleteWith: .failure(.invalidClientId)) {
+            client.complete(with: error, response: .any)
+        }
+    }
 
     // MARK: - Helpers
     private func makeResponseError(code: UInt = 400, message: String = "Bad Request") -> Data {

@@ -29,7 +29,9 @@ public final class ImgurUploader: ImageUploader {
     
     public enum Error: Swift.Error {
         case connectivity
+        case invalidClientId
         case invalidData
+        case tooManyRequests
     }
     
     let client: HTTPClient
@@ -52,13 +54,22 @@ public final class ImgurUploader: ImageUploader {
                 do {
                     let response = try JSONDecoder().decode(Response.self, from: data)
                     
+                    if !response.success {
+                        switch response.status {
+                        case 403:
+                            throw Error.invalidClientId
+                        default:
+                            break
+                        }
+                    }
+                    
                     guard let link = response.data.link, let url = URL(string: link) else {
                         throw Error.invalidData
                     }
                     let remoteImage = RemoteImage(url: url)
                     completion(.success(remoteImage))
                 } catch {
-                    completion(.failure(Error.invalidData))
+                    completion(.failure(error as? Error ?? .invalidData))
                 }
             case .failure(let error):
                 completion(.failure(error))
