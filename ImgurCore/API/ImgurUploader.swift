@@ -10,7 +10,7 @@ import Foundation
 
 public final class ImgurUploader: ImageUploader {
     
-    private let apiUrl = URL(string: "https://api.imgur.com/3/upload")!
+    private let apiUrl = URL(string: "https://api.imgur.com/3/image")!
     
     struct Response: Decodable {
         struct Data: Decodable {
