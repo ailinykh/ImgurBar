@@ -51,6 +51,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let view = DropView(frame: .zero)
     
     private lazy var nontificationProvider: NotificationProvider = {
+        guard #available(macOS 10.14, *) else {
+            return LegacyNotifiactionProvider()
+        }
         return UserNotificationProvider()
     }()
     
