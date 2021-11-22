@@ -10,21 +10,14 @@ import Cocoa
 import ImgurCore
 
 private final class LocalImageProviderFacade: LocalImageConsumer {
-    let uploader: ImageUploader
-    let completion: (ImageUploader.Result) -> Void
+    let onImage: (LocalImage) -> Void
     
-    init(provider: LocalImageProvider, uploader: ImageUploader, completion: @escaping (ImageUploader.Result) -> Void) {
-        self.uploader = uploader
-        self.completion = completion
-        provider.add(consumer: self)
-    }
-    
-    deinit {
-        print(#function)
+    init(onImage: @escaping (LocalImage) -> Void) {
+        self.onImage = onImage
     }
     
     func consume(image localImage: LocalImage) {
-        uploader.upload(localImage, completion: completion)
+        onImage(localImage)
     }
 }
 
@@ -51,16 +44,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             preconditionFailure("Please retreive the `client_id` from https://api.imgur.com/oauth2/addclient and add it to Info.plist for key `imgur_client_id`")
         }
         
-        let uploader = ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder())
+        let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder()))
         
-        _ = LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
-            switch (result) {
-            case .success(let remoteImage):
-                self?.nontificationProvider.sendNotification(identifier: "IMAGE_UPLOADED", title: "Image uploaded", text: remoteImage.url.absoluteString)
-            case .failure(let error):
-                print(error)
+        let facade = LocalImageProviderFacade() { [weak self] localImage in
+            self?.statusBarItem?.button?.startAnimation()
+            
+            uploader.upload(localImage) { result in
+                switch (result) {
+                case .success(let remoteImage):
+                    self?.nontificationProvider.sendNotification(identifier: "IMAGE_UPLOADED", title: "Image uploaded", text: remoteImage.url.absoluteString)
+                case .failure(let error):
+                    print(error)
+                }
+                self?.statusBarItem?.button?.stopAnimation()
             }
         }
+        
+        view.add(consumer: facade)
     }
     
     func setupStatusBar() {
