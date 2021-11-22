@@ -40,6 +40,8 @@ private final class LocalImageProviderFacade: LocalImageConsumer {
     }
 }
 
+extension UserNotificationProvider: NotificationProvider {}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -47,7 +49,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var statusBarItem: NSStatusItem?
     private let view = DropView(frame: .zero)
-    private let nontificationProvider = UserNotificationProvider()
+    
+    private lazy var nontificationProvider: NotificationProvider = {
+        return UserNotificationProvider()
+    }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
