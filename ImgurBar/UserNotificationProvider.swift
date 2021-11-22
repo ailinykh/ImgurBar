@@ -8,7 +8,6 @@
 
 import Cocoa
 import UserNotifications
-import ImgurCore
 
 @available(macOS 10.14, *)
 final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate {
@@ -31,12 +30,12 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
         UNUserNotificationCenter.current().setNotificationCategories([category])
     }
     
-    func sendNotification(with remoteImage: RemoteImage) {
+    func sendNotification(identifier: String, title: String, text: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Image uploaded"
+        content.title = title
         content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "IMAGE_UPLOADED"
-        content.body = remoteImage.url.absoluteString
+        content.categoryIdentifier = identifier
+        content.body = text
         
         let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
         

@@ -62,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = LocalImageProviderFacade(provider: view, uploader: uploader) { [weak self] result in
             switch (result) {
             case .success(let remoteImage):
-                self?.nontificationProvider.sendNotification(with: remoteImage)
+                self?.nontificationProvider.sendNotification(identifier: "IMAGE_UPLOADED", title: "Image uploaded", text: remoteImage.url.absoluteString)
             case .failure(let error):
                 print(error)
             }
