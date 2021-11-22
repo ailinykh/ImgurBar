@@ -40,8 +40,6 @@ private final class LocalImageProviderFacade: LocalImageConsumer {
     }
 }
 
-extension UserNotificationProvider: NotificationProvider {}
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     

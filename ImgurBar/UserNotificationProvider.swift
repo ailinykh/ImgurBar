@@ -8,6 +8,7 @@
 
 import Cocoa
 import UserNotifications
+import ImgurCore
 
 @available(macOS 10.14, *)
 final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate {
@@ -30,22 +31,6 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
         UNUserNotificationCenter.current().setNotificationCategories([category])
     }
     
-    func sendNotification(identifier: String, title: String, text: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = identifier
-        content.body = text
-        
-        let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Can't send notification", error)
-            }
-        }
-    }
-    
     // MARK: - UNUserNotificationCenterDelegate
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -59,6 +44,24 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
             NSPasteboard.general.declareTypes([.string], owner: nil)
             if !NSPasteboard.general.setString(url.absoluteString, forType: .string) {
                 print("Can't copy to Pasteboard")
+            }
+        }
+    }
+}
+
+extension UserNotificationProvider: NotificationProvider {
+    func sendNotification(identifier: String, title: String, text: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = identifier
+        content.body = text
+        
+        let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Can't send notification", error)
             }
         }
     }
