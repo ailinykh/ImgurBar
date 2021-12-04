@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusBarItem: NSStatusItem?
     private let view = DropView(frame: .zero)
     
-    private lazy var nontificationProvider: NotificationProvider = {
+    private lazy var notificationProvider: NotificationProvider = {
         guard #available(macOS 10.14, *) else {
             return LegacyNotifiactionProvider()
         }
@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             uploader.upload(localImage) { result in
                 switch (result) {
                 case .success(let remoteImage):
-                    self?.nontificationProvider.sendNotification(identifier: "IMAGE_UPLOADED", title: "Image uploaded", text: remoteImage.url.absoluteString)
+                    self?.notificationProvider.sendNotification(identifier: "IMAGE_UPLOADED", title: "Image uploaded", text: remoteImage.url.absoluteString)
                 case .failure(let error):
                     print(error)
                 }
