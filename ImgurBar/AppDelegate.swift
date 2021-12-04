@@ -36,6 +36,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return UserNotificationProvider()
     }()
     
+    private lazy var preferencesWindowController: PreferencesWindowController = {
+        let storyboard = NSStoryboard(name: "Preferences", bundle: .main)
+        return storyboard.instantiateInitialController() as! PreferencesWindowController
+    }()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         setupStatusBar()
@@ -63,7 +68,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         view.add(consumer: facade)
     }
     
-    func setupStatusBar() {
+    @IBAction func openPreferencesAction(_ sender: Any?) {
+        preferencesWindowController.showWindow(sender)
+        preferencesWindowController.window?.makeKeyAndOrderFront(sender)
+    }
+    
+    // MARK: - private
+    
+    private func setupStatusBar() {
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusBarItem!.button?.image = NSImage(named: "status_item")
         statusBarItem!.menu = menu

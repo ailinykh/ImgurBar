@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="FxT-5m-xHk">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="WeY-QO-kQm">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="FxT-5m-xHk" customClass="PreferencesWindowController" customModule="ImgurBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Preferenecs" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" toolbarStyle="preference" id="BZF-iz-rWp">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="43" y="642" width="480" height="300"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
+                        <view key="contentView" id="Pdn-FQ-pf4">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="FxT-5m-xHk" id="50M-hl-qlW"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="B6k-CJ-paU" kind="relationship" relationship="window.shadowedContentViewController" id="HER-6L-Mrz"/>
+                    </connections>
+                </windowController>
+                <customObject id="4RG-fk-t3l" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-115" y="60"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="6qz-23-NjC">
+            <objects>
+                <tabViewController title="General" selectedTabViewItemIndex="0" tabStyle="toolbar" id="B6k-CJ-paU" customClass="PreferencesTabController" customModule="ImgurBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" image="gearshape" catalog="system" id="Jog-Rp-jfi"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="jP6-ev-tAl">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="B6k-CJ-paU" id="cfE-og-nll"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="jP6-ev-tAl" id="8zA-dk-JZM"/>
+                        <segue destination="vSN-kb-RAL" kind="relationship" relationship="tabItems" id="43x-72-w4r"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="WYc-8I-Ufn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-115" y="482"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="erO-AA-hAf">
+            <objects>
+                <viewController title="General" id="vSN-kb-RAL" customClass="GeneralPrefsViewController" customModule="ImgurBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="upp-Pu-2Km">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6UW-zi-BzI">
+                                <rect key="frame" x="28" y="263" width="180" height="18"/>
+                                <buttonCell key="cell" type="check" title="Launch at system startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="cSs-Mq-HlD">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6UW-zi-BzI" secondAttribute="trailing" constant="30" id="2QV-xn-jXE"/>
+                            <constraint firstItem="6UW-zi-BzI" firstAttribute="leading" secondItem="upp-Pu-2Km" secondAttribute="leading" constant="30" id="XDX-jw-aSC"/>
+                            <constraint firstItem="6UW-zi-BzI" firstAttribute="top" secondItem="upp-Pu-2Km" secondAttribute="top" constant="20" id="jzq-VT-u1f"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="lkp-iK-XpA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-300" y="972"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gearshape" catalog="system" width="16" height="16"/>
+    </resources>
+</document>

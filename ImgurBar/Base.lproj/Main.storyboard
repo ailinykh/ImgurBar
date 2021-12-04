@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -682,6 +683,11 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="Hpv-LZ-vMO">
                     <items>
+                        <menuItem title="Preferences" keyEquivalent="," id="aJP-Ph-j1z">
+                            <connections>
+                                <action selector="openPreferencesAction:" target="Voe-Tx-rLC" id="OWX-Z8-HeB"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="HdS-pQ-fPO"/>
                         <menuItem title="Quit ImgurBar" keyEquivalent="q" id="pq3-da-XPC">
                             <connections>

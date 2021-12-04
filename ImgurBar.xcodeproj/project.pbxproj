@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7302694F2745930A005FEB37 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302694E2745930A005FEB37 /* DropView.swift */; };
 		7302695427459380005FEB37 /* DropViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302695327459380005FEB37 /* DropViewTests.swift */; };
+		7314576F275B6154003F42D1 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7314576E275B6154003F42D1 /* PreferencesWindowController.swift */; };
 		733A84BE2734673E00789747 /* ImgurCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; };
 		733A84C62734673E00789747 /* ImgurCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 733A84B82734673E00789747 /* ImgurCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		733A84C92734673E00789747 /* ImgurCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; };
@@ -17,6 +18,8 @@
 		733A84D32734676900789747 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A2A00272EA05700515A69 /* Image.swift */; };
 		733A84D42734676900789747 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A2A02272EA37800515A69 /* HTTPClient.swift */; };
 		733A84D6273467E200789747 /* ImgurUploaderUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733A84D5273467E200789747 /* ImgurUploaderUseCaseTests.swift */; };
+		735B6A9E275B9DED00AD8871 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735B6A9D275B9DED00AD8871 /* Preferences.storyboard */; };
+		735B6AA0275BA0C100AD8871 /* GeneralPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
@@ -88,10 +91,13 @@
 		730A2A00272EA05700515A69 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		730A2A02272EA37800515A69 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		730A2A09272EA80900515A69 /* ImgurBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImgurBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7314576E275B6154003F42D1 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		733A84B62734673E00789747 /* ImgurCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImgurCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733A84B82734673E00789747 /* ImgurCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImgurCore.h; sourceTree = "<group>"; };
 		733A84BD2734673E00789747 /* ImgurCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImgurCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		733A84D5273467E200789747 /* ImgurUploaderUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurUploaderUseCaseTests.swift; sourceTree = "<group>"; };
+		735B6A9D275B9DED00AD8871 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPrefsViewController.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 				73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */,
 				73D50B12274C19E700E87626 /* URLSession+ImgurBar.swift */,
 				73D50B17274C1DAF00E87626 /* ImageUploaderMainThreadDecorator.swift */,
+				73DCFBF8275BB14A00236BFB /* Preferences */,
 			);
 			path = ImgurBar;
 			sourceTree = "<group>";
@@ -229,6 +236,16 @@
 				7375719B243B1CF6000B84FD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		73DCFBF8275BB14A00236BFB /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				7314576E275B6154003F42D1 /* PreferencesWindowController.swift */,
+				735B6A9D275B9DED00AD8871 /* Preferences.storyboard */,
+				735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		73F5D04127400F7A0005CE1D /* Helpers */ = {
@@ -413,6 +430,7 @@
 				7375719F243B1CF6000B84FD /* Main.storyboard in Resources */,
 				7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */,
 				73757199243B1CF6000B84FD /* Assets.xcassets in Resources */,
+				735B6A9E275B9DED00AD8871 /* Preferences.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,12 +475,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D50B18274C1DAF00E87626 /* ImageUploaderMainThreadDecorator.swift in Sources */,
+				7314576F275B6154003F42D1 /* PreferencesWindowController.swift in Sources */,
 				73D50AF52749931D00E87626 /* UserNotificationProvider.swift in Sources */,
 				73D50B13274C19E700E87626 /* URLSession+ImgurBar.swift in Sources */,
 				737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */,
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
 				73D50B02274B820100E87626 /* LegacyNotificationProvider.swift in Sources */,
 				73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */,
+				735B6AA0275BA0C100AD8871 /* GeneralPrefsViewController.swift in Sources */,
 				7302694F2745930A005FEB37 /* DropView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
