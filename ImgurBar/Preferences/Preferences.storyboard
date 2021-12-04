@@ -34,7 +34,7 @@
         <!--General-->
         <scene sceneID="6qz-23-NjC">
             <objects>
-                <tabViewController title="General" selectedTabViewItemIndex="0" tabStyle="toolbar" id="B6k-CJ-paU" customClass="PreferencesTabController" customModule="ImgurBar" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController title="General" selectedTabViewItemIndex="0" tabStyle="toolbar" id="B6k-CJ-paU" customClass="PreferencesTabViewController" customModule="ImgurBar" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" image="gearshape" catalog="system" id="Jog-Rp-jfi"/>
                     </tabViewItems>

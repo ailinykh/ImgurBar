@@ -30,6 +30,7 @@
 		73D50B02274B820100E87626 /* LegacyNotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */; };
 		73D50B13274C19E700E87626 /* URLSession+ImgurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50B12274C19E700E87626 /* URLSession+ImgurBar.swift */; };
 		73D50B18274C1DAF00E87626 /* ImageUploaderMainThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50B17274C1DAF00E87626 /* ImageUploaderMainThreadDecorator.swift */; };
+		73DCFBFA275BF06D00236BFB /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCFBF9275BF06D00236BFB /* PreferencesTabViewController.swift */; };
 		73F5D04427401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D04327401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift */; };
 		73F5D04627401D950005CE1D /* ImgurUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D04527401D950005CE1D /* ImgurUploader.swift */; };
 		73F5D05227413B030005CE1D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5D05127413B030005CE1D /* RequestBuilder.swift */; };
@@ -111,6 +112,7 @@
 		73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyNotificationProvider.swift; sourceTree = "<group>"; };
 		73D50B12274C19E700E87626 /* URLSession+ImgurBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+ImgurBar.swift"; sourceTree = "<group>"; };
 		73D50B17274C1DAF00E87626 /* ImageUploaderMainThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderMainThreadDecorator.swift; sourceTree = "<group>"; };
+		73DCFBF9275BF06D00236BFB /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		73F5D04327401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImgurUploaderUseCaseTests+Helpers.swift"; sourceTree = "<group>"; };
 		73F5D04527401D950005CE1D /* ImgurUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurUploader.swift; sourceTree = "<group>"; };
 		73F5D05127413B030005CE1D /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				7314576E275B6154003F42D1 /* PreferencesWindowController.swift */,
 				735B6A9D275B9DED00AD8871 /* Preferences.storyboard */,
 				735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */,
+				73DCFBF9275BF06D00236BFB /* PreferencesTabViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				73F9DBDC2441A07500BD9CEE /* NSButton+Animation.swift in Sources */,
 				73D50B02274B820100E87626 /* LegacyNotificationProvider.swift in Sources */,
 				73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */,
+				73DCFBFA275BF06D00236BFB /* PreferencesTabViewController.swift in Sources */,
 				735B6AA0275BA0C100AD8871 /* GeneralPrefsViewController.swift in Sources */,
 				7302694F2745930A005FEB37 /* DropView.swift in Sources */,
 			);
