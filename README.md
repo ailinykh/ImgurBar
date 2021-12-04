@@ -15,7 +15,7 @@ Automatic screenshots uploading is also supported
 
 - clone repo
 - obtain `CLIENT_ID` at [api.imgur.com](https://api.imgur.com/oauth2/addclient)
-- insert in [Client.swift](https://github.com/ailinykh/ImgurBar/blob/master/ImgurBar/Client.swift#L13) file
+- insert in [Info.plist](https://github.com/ailinykh/ImgurBar/blob/master/ImgurBar/Info.plist#L40) file
 - build an app
 
 # Thanks
