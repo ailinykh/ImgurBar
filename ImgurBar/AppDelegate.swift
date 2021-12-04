@@ -1,9 +1,5 @@
 //
-//  AppDelegate.swift
-//  imgurBar
-//
-//  Created by Anton Ilinykh on 11.04.2020.
-//  Copyright © 2020 Anton Ilinykh. All rights reserved.
+//  Copyright © 2021 ailinykh.com. All rights reserved.
 //
 
 import Cocoa

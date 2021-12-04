@@ -27,7 +27,7 @@
 	<key>NSDesktopFolderUsageDescription</key>
 	<string>Application needs access to Desktop folder to be able monitor your screenshots</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2020 Anton Ilinykh. All rights reserved.</string>
+	<string>Copyright © 2020 ailinykh.com. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>

@@ -1,9 +1,5 @@
 //
-//  DropViewTests.swift
-//  ImgurBarTests
-//
-//  Created by Anton Ilinykh on 17.11.2021.
-//  Copyright © 2021 Anton Ilinykh. All rights reserved.
+//  Copyright © 2021 ailinykh.com. All rights reserved.
 //
 
 import Cocoa

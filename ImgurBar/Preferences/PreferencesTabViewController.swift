@@ -1,5 +1,5 @@
 //
-//  Copyright © 2021 Anton Ilinykh. All rights reserved.
+//  Copyright © 2021 ailinykh.com. All rights reserved.
 //
 
 import Cocoa
