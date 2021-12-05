@@ -5,12 +5,19 @@
 import Cocoa
 
 class GeneralPrefsViewController: NSViewController {
-
+    
+    var onLaunchOnSystemStartupChanged: (Bool) -> Void = { _ in }
+    
+    
+    @objc dynamic var launchOnSystemStartup = false {
+        didSet {
+            onLaunchOnSystemStartupChanged(launchOnSystemStartup)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        print(#function, preferredContentSize)
     }
     
 }

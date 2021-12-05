@@ -69,6 +69,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="vSN-kb-RAL" name="value" keyPath="launchOnSystemStartup" id="LWW-FG-8Ui"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
