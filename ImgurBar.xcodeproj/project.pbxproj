@@ -25,6 +25,9 @@
 		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
 		737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */; };
+		738241CD275D309000B8757B /* GeneralPrefsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738241CC275D309000B8757B /* GeneralPrefsViewControllerTests.swift */; };
+		738241DE275D445F00B8757B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738241DD275D445F00B8757B /* AppDelegate.swift */; };
+		7382421C275D48DA00B8757B /* ImgurBarHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = 738241DB275D445F00B8757B /* ImgurBarHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		73D50AF52749931D00E87626 /* UserNotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50AF42749931D00E87626 /* UserNotificationProvider.swift */; };
 		73D50AFA274B6B5A00E87626 /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */; };
 		73D50B02274B820100E87626 /* LegacyNotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */; };
@@ -69,6 +72,13 @@
 			remoteGlobalIDString = 733A84B52734673E00789747;
 			remoteInfo = ImgurCore;
 		};
+		7382420B275D485500B8757B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73757189243B1CF5000B84FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 738241DA275D445F00B8757B;
+			remoteInfo = ImgurBarHelper;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +91,17 @@
 				733A84CA2734673E00789747 /* ImgurCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7382421B275D48BD00B8757B /* Copy Helper */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				7382421C275D48DA00B8757B /* ImgurBarHelper.app in Copy Helper */,
+			);
+			name = "Copy Helper";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -107,6 +128,11 @@
 		737571A0243B1CF6000B84FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		737571A1243B1CF6000B84FD /* imgurBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imgurBar.entitlements; sourceTree = "<group>"; };
 		737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsObserver.swift; sourceTree = "<group>"; };
+		738241CC275D309000B8757B /* GeneralPrefsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPrefsViewControllerTests.swift; sourceTree = "<group>"; };
+		738241DB275D445F00B8757B /* ImgurBarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		738241DD275D445F00B8757B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		738241E9275D446100B8757B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		738241EA275D446100B8757B /* ImgurBarHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImgurBarHelper.entitlements; sourceTree = "<group>"; };
 		73D50AF42749931D00E87626 /* UserNotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationProvider.swift; sourceTree = "<group>"; };
 		73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
 		73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyNotificationProvider.swift; sourceTree = "<group>"; };
@@ -153,6 +179,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		738241D8275D445F00B8757B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -160,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				7302695327459380005FEB37 /* DropViewTests.swift */,
+				738241CC275D309000B8757B /* GeneralPrefsViewControllerTests.swift */,
 			);
 			path = ImgurBarTests;
 			sourceTree = "<group>";
@@ -196,6 +230,7 @@
 				7302695B27459386005FEB37 /* ImgurBarTests */,
 				733A84B72734673E00789747 /* ImgurCore */,
 				733A84C32734673E00789747 /* ImgurCoreTests */,
+				738241DC275D445F00B8757B /* ImgurBarHelper */,
 				73757192243B1CF5000B84FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -207,6 +242,7 @@
 				730A2A09272EA80900515A69 /* ImgurBarTests.xctest */,
 				733A84B62734673E00789747 /* ImgurCore.framework */,
 				733A84BD2734673E00789747 /* ImgurCoreTests.xctest */,
+				738241DB275D445F00B8757B /* ImgurBarHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,6 +274,16 @@
 				7375719B243B1CF6000B84FD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		738241DC275D445F00B8757B /* ImgurBarHelper */ = {
+			isa = PBXGroup;
+			children = (
+				738241DD275D445F00B8757B /* AppDelegate.swift */,
+				738241E9275D446100B8757B /* Info.plist */,
+				738241EA275D446100B8757B /* ImgurBarHelper.entitlements */,
+			);
+			path = ImgurBarHelper;
 			sourceTree = "<group>";
 		};
 		73DCFBF8275BB14A00236BFB /* Preferences */ = {
@@ -345,15 +391,34 @@
 				7375718E243B1CF5000B84FD /* Frameworks */,
 				7375718F243B1CF5000B84FD /* Resources */,
 				733A84CB2734673E00789747 /* Embed Frameworks */,
+				7382421B275D48BD00B8757B /* Copy Helper */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7382420C275D485500B8757B /* PBXTargetDependency */,
 				733A84C82734673E00789747 /* PBXTargetDependency */,
 			);
 			name = ImgurBar;
 			productName = imgurBar;
 			productReference = 73757191243B1CF5000B84FD /* ImgurBar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		738241DA275D445F00B8757B /* ImgurBarHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 738241EB275D446100B8757B /* Build configuration list for PBXNativeTarget "ImgurBarHelper" */;
+			buildPhases = (
+				738241D7275D445F00B8757B /* Sources */,
+				738241D8275D445F00B8757B /* Frameworks */,
+				738241D9275D445F00B8757B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImgurBarHelper;
+			productName = ImgurBarHelper;
+			productReference = 738241DB275D445F00B8757B /* ImgurBarHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -362,7 +427,7 @@
 		73757189243B1CF5000B84FD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = ailinykh.com;
 				TargetAttributes = {
@@ -380,6 +445,9 @@
 					};
 					73757190243B1CF5000B84FD = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					738241DA275D445F00B8757B = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -400,6 +468,7 @@
 				730A2A08272EA80900515A69 /* ImgurBarTests */,
 				733A84B52734673E00789747 /* ImgurCore */,
 				733A84BC2734673E00789747 /* ImgurCoreTests */,
+				738241DA275D445F00B8757B /* ImgurBarHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -437,6 +506,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		738241D9275D445F00B8757B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -444,6 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				738241CD275D309000B8757B /* GeneralPrefsViewControllerTests.swift in Sources */,
 				7302695427459380005FEB37 /* DropViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +568,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		738241D7275D445F00B8757B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				738241DE275D445F00B8757B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -513,6 +598,11 @@
 			isa = PBXTargetDependency;
 			target = 733A84B52734673E00789747 /* ImgurCore */;
 			targetProxy = 733A84C72734673E00789747 /* PBXContainerItemProxy */;
+		};
+		7382420C275D485500B8757B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 738241DA275D445F00B8757B /* ImgurBarHelper */;
+			targetProxy = 7382420B275D485500B8757B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -863,6 +953,50 @@
 			};
 			name = Release;
 		};
+		738241EC275D446100B8757B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ImgurBarHelper/ImgurBarHelper.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"ImgurBarHelper/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ImgurBarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ailinykh.ImgurBarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		738241ED275D446100B8757B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ImgurBarHelper/ImgurBarHelper.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"ImgurBarHelper/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ImgurBarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ailinykh.ImgurBarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -907,6 +1041,15 @@
 			buildConfigurations = (
 				737571A5243B1CF6000B84FD /* Debug */,
 				737571A6243B1CF6000B84FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		738241EB275D446100B8757B /* Build configuration list for PBXNativeTarget "ImgurBarHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				738241EC275D446100B8757B /* Debug */,
+				738241ED275D446100B8757B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
