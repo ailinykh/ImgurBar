@@ -45,6 +45,7 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
     }
 }
 
+@available(macOS 10.14, *)
 extension UserNotificationProvider: NotificationProvider {
     func sendNotification(identifier: String, title: String, text: String) {
         let content = UNMutableNotificationContent()

@@ -5,6 +5,7 @@
 import Foundation
 import Combine
 
+@available(macOS 10.15, *)
 class ScreenshotsObserver: NSObject {
     let screenshotsPubliser = PassthroughSubject<Data, Never>()
     
