@@ -24,17 +24,11 @@ extension AppDelegate: NSApplicationDelegate {
         if !isRunning {
             DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.terminate), name: .terminateLauncher, object: mainBundleIdentifier)
 
-            let path = Bundle.main.bundlePath as NSString
-            var components = path.pathComponents
-            components.removeLast()
-            components.removeLast()
-            components.removeLast()
-            components.append("MacOS")
-            components.append("ImgurBar")
-
-            let newPath = NSString.path(withComponents: components)
-
-            NSWorkspace.shared.launchApplication(newPath)
+            var path = Bundle.main.bundlePath as NSString
+            for _ in 1...4 {
+                path = path.deletingLastPathComponent as NSString
+            }
+            NSWorkspace.shared.launchApplication(path as String)
         }
         else {
             self.terminate()
