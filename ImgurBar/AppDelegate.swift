@@ -35,6 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return UserNotificationProvider()
     }()
     
+    private let screenshotsObserver = ScreenshotsObserver()
+    
     private lazy var preferencesWindowController: PreferencesWindowController = {
         let storyboard = NSStoryboard(name: "Preferences", bundle: .main)
         let windowController = storyboard.instantiateInitialController() as! PreferencesWindowController
@@ -47,6 +49,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let bundleId = self.helperBundleIdentifier as CFString
                 SMLoginItemSetEnabled(bundleId, changed)
             }
+            vc.uploadScreenshots = getUploadScreenshotsSetting()
+            vc.onUploadScreenshotsChanged = setUploadSreenshotsSetting
         }
         
         return windowController
@@ -75,6 +79,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 self?.statusBarItem?.button?.stopAnimation()
             }
+        }
+        
+        screenshotsObserver.onURL = { [weak facade] url in
+            let localImage = LocalImage(fileUrl: url)
+            facade?.consume(image: localImage)
+        }
+        
+        if getUploadScreenshotsSetting() {
+            screenshotsObserver.start()
         }
         
         view.add(consumer: facade)
@@ -111,6 +124,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let job = jobs.first { ($0["Label"] as? String) == helperBundleIdentifier }
         return job?["OnDemand"] as? Bool ?? false
+    }
+    
+    private let uploadSreenshotsAutomatically = "UploadSreenshotsAutomatically"
+    
+    private func getUploadScreenshotsSetting() -> Bool {
+        return UserDefaults.standard.bool(forKey: uploadSreenshotsAutomatically)
+    }
+    
+    private func setUploadSreenshotsSetting(_ enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: uploadSreenshotsAutomatically)
+        if enabled {
+            screenshotsObserver.start()
+        } else {
+            screenshotsObserver.stop()
+        }
     }
 }
 

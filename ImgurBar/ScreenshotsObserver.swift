@@ -3,78 +3,40 @@
 //
 
 import Foundation
-import Combine
 
-@available(macOS 10.15, *)
 class ScreenshotsObserver: NSObject {
-    let screenshotsPubliser = PassthroughSubject<Data, Never>()
+    private lazy var query: NSMetadataQuery = {
+        let query = NSMetadataQuery()
+        query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1")
+        query.searchScopes = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)
+        return query
+    }()
     
-    private let query: NSMetadataQuery
-    private var subscriptions = Set<AnyCancellable>()
+    var onURL: (URL) -> Void = { _ in }
     
     override init() {
-        query = NSMetadataQuery()
-        query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1")
-        
-        let url = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first!
-        
-        // trigger Desktop folder access request
-        _ = try? FileManager.default.contentsOfDirectory(atPath: url.path)
-        
-        query.searchScopes = [url]
-        
         super.init()
         
-//        NSFileCoordinator.addFilePresenter(self)
-        
-        NotificationCenter.default.publisher(for: .NSMetadataQueryDidUpdate)
-            .compactMap { $0.userInfo?[kMDQueryUpdateChangedItems] as? [NSMetadataItem] }
-            .map { $0.publisher }
-            .switchToLatest()
-            .compactMap { $0.value(forAttribute: kMDItemFSName as String) as? String }
-            .map { url.appendingPathComponent($0) }
-            .compactMap { FileManager.default.contents(atPath: $0.path) }
-            .sink(receiveValue: { [unowned self] in
-                self.screenshotsPubliser.send($0)
-            })
-            .store(in: &subscriptions)
-        
-        query.start()
+        NotificationCenter.default.addObserver(forName: .NSMetadataQueryDidUpdate, object: query, queue: nil) { [weak self] note in
+            guard
+                let items = note.userInfo?[kMDQueryUpdateChangedItems] as? [NSMetadataItem],
+                let last = items.last,
+                let path = last.value(forAttribute: kMDItemPath as String) as? String
+            else { return }
+            self?.onURL(URL(fileURLWithPath: path))
+        }
     }
     
     deinit {
+        stop()
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func start() {
+        query.start()
+    }
+    
+    func stop() {
         query.stop()
     }
 }
-
-// NSFilePresenter extension
-/*
-extension ScreenshotsObserver: NSFilePresenter {
-    var presentedItemURL: URL? {
-        let url = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first
-        
-        if let path = url?.path {
-            // trigger Desktop folder access request 
-            _ = try? FileManager.default.contentsOfDirectory(atPath: path)
-        }
-        
-        return url
-    }
-    
-    var presentedItemOperationQueue: OperationQueue {
-        if let queue = OperationQueue.current {
-            return queue
-        }
-        return OperationQueue.main
-    }
-    
-    func presentedSubitemDidAppear(at url: URL) {
-        print(#function, url)
-    }
-    
-    func presentedSubitemDidChange(at url: URL) {
-        print(#function, url)
-        filePubliser.send(url)
-    }
-}
-*/
