@@ -26,6 +26,26 @@ class GeneralPrefsViewControllerTests: XCTestCase {
         
         XCTAssertEqual(changes, [false, true])
     }
+    
+    func test_onUploadScreenshotsChanged_deliversUploadScreenshotSetting() {
+        let viewController = makeSUT()
+        var changes = [Bool]()
+        
+        viewController.onUploadScreenshotsChanged = { change in
+            changes.append(change)
+        }
+        
+        XCTAssertEqual(changes, [])
+        
+        viewController.uploadScreenshots = false
+        
+        XCTAssertEqual(changes, [false])
+        
+        let checkbox = viewController.view.subviews[1] as! NSButton
+        checkbox.performClick(nil)
+        
+        XCTAssertEqual(changes, [false, true])
+    }
 
     private func makeSUT() -> GeneralPrefsViewController {
         let storyboard = NSStoryboard(name: "Preferences", bundle: .main)

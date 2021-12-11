@@ -73,11 +73,24 @@
                                     <binding destination="vSN-kb-RAL" name="value" keyPath="launchOnSystemStartup" id="LWW-FG-8Ui"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5ny-ks-HMo">
+                                <rect key="frame" x="28" y="227" width="231" height="18"/>
+                                <buttonCell key="cell" type="check" title="Upload screenshots automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tfQ-fp-wSU">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="vSN-kb-RAL" name="value" keyPath="uploadScreenshots" id="Szq-pS-tzL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6UW-zi-BzI" secondAttribute="trailing" constant="30" id="2QV-xn-jXE"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5ny-ks-HMo" secondAttribute="trailing" constant="30" id="7uV-bq-Hlc"/>
+                            <constraint firstItem="5ny-ks-HMo" firstAttribute="top" secondItem="6UW-zi-BzI" secondAttribute="bottom" constant="20" id="84r-rQ-Lbn"/>
                             <constraint firstItem="6UW-zi-BzI" firstAttribute="leading" secondItem="upp-Pu-2Km" secondAttribute="leading" constant="30" id="XDX-jw-aSC"/>
                             <constraint firstItem="6UW-zi-BzI" firstAttribute="top" secondItem="upp-Pu-2Km" secondAttribute="top" constant="20" id="jzq-VT-u1f"/>
+                            <constraint firstItem="5ny-ks-HMo" firstAttribute="leading" secondItem="6UW-zi-BzI" secondAttribute="leading" id="rg3-ts-Wbi"/>
                         </constraints>
                     </view>
                 </viewController>

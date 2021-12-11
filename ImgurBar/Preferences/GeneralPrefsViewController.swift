@@ -7,11 +7,17 @@ import Cocoa
 class GeneralPrefsViewController: NSViewController {
     
     var onLaunchOnSystemStartupChanged: (Bool) -> Void = { _ in }
-    
+    var onUploadScreenshotsChanged: (Bool) -> Void = { _ in }
     
     @objc dynamic var launchOnSystemStartup = false {
         didSet {
             onLaunchOnSystemStartupChanged(launchOnSystemStartup)
+        }
+    }
+    
+    @objc dynamic var uploadScreenshots = false {
+        didSet {
+            onUploadScreenshotsChanged(uploadScreenshots)
         }
     }
     
