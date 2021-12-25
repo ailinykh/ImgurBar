@@ -29,6 +29,7 @@
 		738242CE275DE48E00B8757B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738242CD275DE48E00B8757B /* AppDelegate.swift */; };
 		738242DD275DE4BF00B8757B /* ImgurBarHelper.app in Copy Helper */ = {isa = PBXBuildFile; fileRef = 738242CB275DE48E00B8757B /* ImgurBarHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		738242F1275DE57900B8757B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738242F0275DE57900B8757B /* MainMenu.xib */; };
+		73C79B1327774AC700B242CC /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C79B1227774AC700B242CC /* AuthProvider.swift */; };
 		73D50AF52749931D00E87626 /* UserNotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50AF42749931D00E87626 /* UserNotificationProvider.swift */; };
 		73D50AFA274B6B5A00E87626 /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */; };
 		73D50B02274B820100E87626 /* LegacyNotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */; };
@@ -135,6 +136,7 @@
 		738242D4275DE48F00B8757B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		738242D5275DE48F00B8757B /* ImgurBarHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImgurBarHelper.entitlements; sourceTree = "<group>"; };
 		738242F0275DE57900B8757B /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		73C79B1227774AC700B242CC /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		73D50AF42749931D00E87626 /* UserNotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationProvider.swift; sourceTree = "<group>"; };
 		73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
 		73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyNotificationProvider.swift; sourceTree = "<group>"; };
@@ -204,13 +206,14 @@
 			isa = PBXGroup;
 			children = (
 				73F5D04227401D380005CE1D /* API */,
-				730A29FE272E9DFF00515A69 /* ImageUploader.swift */,
-				730A2A00272EA05700515A69 /* Image.swift */,
+				73C79B1227774AC700B242CC /* AuthProvider.swift */,
 				730A2A02272EA37800515A69 /* HTTPClient.swift */,
+				730A2A00272EA05700515A69 /* Image.swift */,
+				730A29FE272E9DFF00515A69 /* ImageUploader.swift */,
 				733A84B82734673E00789747 /* ImgurCore.h */,
-				73F5D05127413B030005CE1D /* RequestBuilder.swift */,
 				73F5D06B2742FA860005CE1D /* LocalImageProvider.swift */,
 				73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */,
+				73F5D05127413B030005CE1D /* RequestBuilder.swift */,
 			);
 			path = ImgurCore;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				73D50AFA274B6B5A00E87626 /* NotificationProvider.swift in Sources */,
 				733A84D32734676900789747 /* Image.swift in Sources */,
 				73F5D04627401D950005CE1D /* ImgurUploader.swift in Sources */,
+				73C79B1327774AC700B242CC /* AuthProvider.swift in Sources */,
 				73F5D06C2742FA860005CE1D /* LocalImageProvider.swift in Sources */,
 				733A84D42734676900789747 /* HTTPClient.swift in Sources */,
 			);
