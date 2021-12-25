@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
     
-    private lazy var notificationProvider: NotificationProvider = {
+    private let notificationProvider: NotificationProvider = {
         guard #available(macOS 10.14, *) else {
             return LegacyNotifiactionProvider()
         }
