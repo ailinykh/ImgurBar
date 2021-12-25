@@ -83,12 +83,89 @@
                                     <binding destination="vSN-kb-RAL" name="value" keyPath="uploadScreenshots" id="Szq-pS-tzL"/>
                                 </connections>
                             </button>
+                            <box title="Account" translatesAutoresizingMaskIntoConstraints="NO" id="h4m-GC-Xx3">
+                                <rect key="frame" x="27" y="26" width="456" height="104"/>
+                                <view key="contentView" id="IBA-G4-aNY">
+                                    <rect key="frame" x="3" y="3" width="450" height="86"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RdE-Xq-YBr">
+                                            <rect key="frame" x="325" y="33" width="117" height="20"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HcT-29-BjZ">
+                                                    <rect key="frame" x="-7" y="-7" width="68" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kmP-hu-1Wb">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="loginButtonAction:" target="vSN-kb-RAL" id="pG2-7n-J1h"/>
+                                                        <binding destination="vSN-kb-RAL" name="hidden" keyPath="account.authorized" id="PG7-DU-fVl"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ENI-Zx-poC">
+                                                    <rect key="frame" x="47" y="-7" width="77" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Logout" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mEt-2n-QWq">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="logoutButtonAction:" target="vSN-kb-RAL" id="YvZ-tb-eSK"/>
+                                                        <binding destination="vSN-kb-RAL" name="hidden" keyPath="account.authorized" id="zk3-2U-kUd">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y33-Ld-rOW">
+                                            <rect key="frame" x="6" y="36" width="91" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Account name" id="WkU-WN-CHs">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="vSN-kb-RAL" name="hidden" keyPath="account.authorized" id="TzH-sP-U1O">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="vSN-kb-RAL" name="value" keyPath="account.name" id="coh-kP-0eA"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RdE-Xq-YBr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y33-Ld-rOW" secondAttribute="trailing" constant="20" id="Jod-t1-xtU"/>
+                                        <constraint firstItem="RdE-Xq-YBr" firstAttribute="centerY" secondItem="IBA-G4-aNY" secondAttribute="centerY" id="Kg5-pp-sOx"/>
+                                        <constraint firstItem="Y33-Ld-rOW" firstAttribute="leading" secondItem="IBA-G4-aNY" secondAttribute="leading" constant="8" id="Pjd-6e-Upr"/>
+                                        <constraint firstAttribute="trailing" secondItem="RdE-Xq-YBr" secondAttribute="trailing" constant="8" id="nZZ-MW-WQd"/>
+                                        <constraint firstItem="RdE-Xq-YBr" firstAttribute="firstBaseline" secondItem="Y33-Ld-rOW" secondAttribute="firstBaseline" id="oYR-fB-mX5"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="hM2-AR-ZY4"/>
+                                </constraints>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6UW-zi-BzI" secondAttribute="trailing" constant="30" id="2QV-xn-jXE"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5ny-ks-HMo" secondAttribute="trailing" constant="30" id="7uV-bq-Hlc"/>
                             <constraint firstItem="5ny-ks-HMo" firstAttribute="top" secondItem="6UW-zi-BzI" secondAttribute="bottom" constant="20" id="84r-rQ-Lbn"/>
                             <constraint firstItem="6UW-zi-BzI" firstAttribute="leading" secondItem="upp-Pu-2Km" secondAttribute="leading" constant="30" id="XDX-jw-aSC"/>
+                            <constraint firstAttribute="trailing" secondItem="h4m-GC-Xx3" secondAttribute="trailing" constant="20" id="YpL-T5-oum"/>
+                            <constraint firstItem="h4m-GC-Xx3" firstAttribute="leading" secondItem="5ny-ks-HMo" secondAttribute="leading" id="g6B-IC-an8"/>
+                            <constraint firstAttribute="bottom" secondItem="h4m-GC-Xx3" secondAttribute="bottom" constant="30" id="hav-E8-19S"/>
                             <constraint firstItem="6UW-zi-BzI" firstAttribute="top" secondItem="upp-Pu-2Km" secondAttribute="top" constant="20" id="jzq-VT-u1f"/>
                             <constraint firstItem="5ny-ks-HMo" firstAttribute="leading" secondItem="6UW-zi-BzI" secondAttribute="leading" id="rg3-ts-Wbi"/>
                         </constraints>

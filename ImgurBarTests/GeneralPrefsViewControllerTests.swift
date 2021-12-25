@@ -47,6 +47,28 @@ class GeneralPrefsViewControllerTests: XCTestCase {
         XCTAssertEqual(changes, [false, true])
     }
 
+    func test_accountViewModel_actions() {
+        let viewController = makeSUT()
+        let model = AccountViewModel()
+        var actions = [String] ()
+        model.onLogin = { actions.append("onLogin") }
+        model.onLogout = { actions.append("onLogout") }
+        
+        viewController.display(model)
+        
+        XCTAssertEqual(actions, [])
+        
+        viewController.loginButtonAction(nil)
+        
+        XCTAssertEqual(actions, ["onLogin"])
+        
+        viewController.logoutButtonAction(nil)
+        
+        XCTAssertEqual(actions, ["onLogin", "onLogout"])
+    }
+    
+    // MARK: - Helpers
+    
     private func makeSUT() -> GeneralPrefsViewController {
         let storyboard = NSStoryboard(name: "Preferences", bundle: .main)
         let windowController = storyboard.instantiateInitialController() as! PreferencesWindowController

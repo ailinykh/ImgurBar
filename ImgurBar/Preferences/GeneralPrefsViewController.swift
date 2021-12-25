@@ -4,6 +4,15 @@
 
 import Cocoa
 
+@objc
+class AccountViewModel: NSObject {
+    @objc var authorized = false
+    @objc var name = "Not authorized"
+    
+    var onLogin = {}
+    var onLogout = {}
+}
+
 class GeneralPrefsViewController: NSViewController {
     
     var onLaunchOnSystemStartupChanged: (Bool) -> Void = { _ in }
@@ -21,9 +30,22 @@ class GeneralPrefsViewController: NSViewController {
         }
     }
     
+    @objc dynamic var account: AccountViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    func display(_ model: AccountViewModel) {
+        account = model
+    }
+    
+    @IBAction func loginButtonAction(_ sender: AnyObject?) {
+        account?.onLogin()
+    }
+    
+    @IBAction func logoutButtonAction(_ sender: AnyObject?) {
+        account?.onLogout()
+    }
 }
