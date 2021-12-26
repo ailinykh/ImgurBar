@@ -5,6 +5,11 @@
 public struct AuthData {
     let accessToken: String
     let accountName: String
+    
+    public init(accessToken: String, accountName: String) {
+        self.accessToken = accessToken
+        self.accountName = accountName
+    }
 }
 
 public protocol AuthProvider {
