@@ -38,9 +38,7 @@ private final class AuthClientStub: AuthClient {
 class ImgurAuthProviderUseCaseTests: XCTestCase {
 
     func test_authorize_deliversAuthResult() {
-        let clientId = "some_client_id"
-        let client = AuthClientStub()
-        let sut = ImgurAuthProvider(clientId: clientId, client: client)
+        let (sut, _) = makeSUT()
         let exp = expectation(description: "Authorization expectation")
         
         sut.authorize { result in
@@ -50,4 +48,12 @@ class ImgurAuthProviderUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
     }
 
+    // MARK: - Helpers
+    
+    private func makeSUT() -> (ImgurAuthProvider, AuthClientStub) {
+        let clientId = "some_client_id"
+        let client = AuthClientStub()
+        let sut = ImgurAuthProvider(clientId: clientId, client: client)
+        return (sut, client)
+    }
 }
