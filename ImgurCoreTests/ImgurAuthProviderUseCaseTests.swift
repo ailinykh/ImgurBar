@@ -105,27 +105,6 @@ class ImgurAuthProviderUseCaseTests: XCTestCase {
             client.complete(with: .success(url))
         }
     }
-    
-    private func expect(_ sut: ImgurAuthProvider, toCompleteWith expectedResult: Result<AuthData, Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-        let exp = expectation(description: "Authorization expectation")
-        sut.authorize { receivedResult in
-            switch (expectedResult, receivedResult) {
-            case (.success(let expectedData), .success(let receivedData)):
-                XCTAssertEqual(expectedData.accessToken, receivedData.accessToken, file: file, line: line)
-                XCTAssertEqual(expectedData.accountName, receivedData.accountName, file: file, line: line)
-            case (.failure(let expectedError as NSError), .failure(let receivedError as NSError)):
-                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
-            default:
-                XCTFail("expected: \(expectedResult) but got \(receivedResult)", file: file, line: line)
-            }
-            
-            exp.fulfill()
-        }
-        
-        action()
-        
-        wait(for: [exp], timeout: 0.1)
-    }
 
     // MARK: - Helpers
     
