@@ -37,6 +37,6 @@
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 	<key>imgur_client_id</key>
-	<string>INSERT_YOUR_CLIENT_ID_HERE</string>
+	<string></string>
 </dict>
 </plist>

@@ -45,9 +45,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let screenshotsObserver = ScreenshotsObserver()
     
     private let clientId: String = {
-        guard let clientId = Bundle.main.infoDictionary?["imgur_client_id"] as? String else {
+#if DEBUG
+        guard let clientId = ProcessInfo.processInfo.environment["imgur_client_id"] else {
+            return "FAKE_CLIENT_ID"
+        }
+#else
+        guard let clientId = Bundle.main.infoDictionary?["imgur_client_id"] as? String, !clientId.isEmpty else {
             preconditionFailure("Please retreive the `client_id` from https://api.imgur.com/oauth2/addclient and add it to Info.plist for key `imgur_client_id`")
         }
+#endif
         return clientId
     }()
     
