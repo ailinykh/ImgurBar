@@ -18,11 +18,11 @@ public class ImgurAuthProvider: AuthProvider {
     
     public func authorize(completion: @escaping (Result<AuthData, Swift.Error>) -> Void) {
         let url = URL(string:"https://api.imgur.com/oauth2/authorize?client_id=\(clientId)&response_type=token")!
-        client.open(url: url) { [weak self] result in
+        client.open(url: url) { result in
             switch result {
             case .success(let url):
                 do {
-                    let authData = try self!.handle(url: url)
+                    let authData = try ImgurAuthMapper.handle(url: url)
                     completion(.success(authData))
                 } catch {
                     completion(.failure(error))
@@ -33,22 +33,26 @@ public class ImgurAuthProvider: AuthProvider {
         }
     }
     
-    private func handle(url: URL) throws -> AuthData {
+    
+}
+
+private final class ImgurAuthMapper {
+    static func handle(url: URL) throws -> AuthData {
         let parts = url.absoluteString.split(separator: "#")
         guard parts.count > 1, let path = parts.last
         else {
-            throw Error.invalidUrlRedirect
+            throw ImgurAuthProvider.Error.invalidUrlRedirect
         }
         
         let dict = parse(path: String(path))
         guard let token = dict["access_token"], let account = dict["account_username"] else {
-            throw Error.insufficientParams
+            throw ImgurAuthProvider.Error.insufficientParams
         }
         
         return AuthData(accessToken: token, accountName: account)
     }
     
-    private func parse(path: String) -> [String: String] {
+    static func parse(path: String) -> [String: String] {
         return path.split(separator: "&")
             .reduce([String:String](), { partialResult, part in
                 var partialResult = partialResult
