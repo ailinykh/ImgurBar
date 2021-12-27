@@ -35,6 +35,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return UserNotificationProvider()
     }()
     
+    private let authClient: AuthClient = {
+        guard #available(macOS 10.15, *) else {
+            return LegacyAuthClient()
+        }
+        return ModernAuthClient()
+    }()
+    
     private let screenshotsObserver = ScreenshotsObserver()
     
     private let clientId: String = {
@@ -58,6 +65,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             vc.uploadScreenshots = getUploadScreenshotsSetting()
             vc.onUploadScreenshotsChanged = setUploadSreenshotsSetting
+            
+            let authProvider = ImgurAuthProvider(clientId: clientId, client: authClient)
+            
+            let model = AccountViewModel()
+            model.onLogin = { [weak self] in
+                authProvider.authorize { result in
+                    switch result {
+                    case .success(let data):
+                        print("Got token:", data.accessToken)
+                        let model = AccountViewModel()
+                        model.onLogout = { print("logout") }
+                        model.name = data.accountName
+                        model.authorized = true
+                        vc.display(model)
+                    case .failure(let error):
+                        print("Auth failed", error)
+                    }
+                }
+            }
+            vc.display(model)
         }
         
         return windowController
