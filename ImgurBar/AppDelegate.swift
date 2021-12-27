@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             vc.uploadScreenshots = getUploadScreenshotsSetting()
             vc.onUploadScreenshotsChanged = setUploadSreenshotsSetting
             
-            let authProvider = ImgurAuthProvider(clientId: clientId, client: authClient)
+            let authProvider = AuthProviderMainThreadDecorator(decoratee: ImgurAuthProvider(clientId: clientId, client: authClient))
             
             let model = AccountViewModel()
             model.onLogin = { [weak self] in
