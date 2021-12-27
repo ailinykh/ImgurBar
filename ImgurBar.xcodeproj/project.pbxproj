@@ -25,7 +25,6 @@
 		735B6AA0275BA0C100AD8871 /* GeneralPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
-		7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7375719B243B1CF6000B84FD /* Preview Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
 		737571A8243B3BAA000B84FD /* ScreenshotsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */; };
 		738241CD275D309000B8757B /* GeneralPrefsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738241CC275D309000B8757B /* GeneralPrefsViewControllerTests.swift */; };
@@ -132,7 +131,6 @@
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7375719B243B1CF6000B84FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7375719E243B1CF6000B84FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		737571A0243B1CF6000B84FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		737571A1243B1CF6000B84FD /* imgurBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imgurBar.entitlements; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				737571A0243B1CF6000B84FD /* Info.plist */,
 				7375719D243B1CF6000B84FD /* Main.storyboard */,
 				73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */,
-				7375719A243B1CF6000B84FD /* Preview Content */,
 				737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */,
 				7302694E2745930A005FEB37 /* DropView.swift */,
 				73D50AF42749931D00E87626 /* UserNotificationProvider.swift */,
@@ -281,14 +278,6 @@
 				73DCFBF8275BB14A00236BFB /* Preferences */,
 			);
 			path = ImgurBar;
-			sourceTree = "<group>";
-		};
-		7375719A243B1CF6000B84FD /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				7375719B243B1CF6000B84FD /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		738242CC275DE48E00B8757B /* ImgurBarHelper */ = {
@@ -518,7 +507,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7375719F243B1CF6000B84FD /* Main.storyboard in Resources */,
-				7375719C243B1CF6000B84FD /* Preview Assets.xcassets in Resources */,
 				73757199243B1CF6000B84FD /* Assets.xcassets in Resources */,
 				735B6A9E275B9DED00AD8871 /* Preferences.storyboard in Resources */,
 			);
