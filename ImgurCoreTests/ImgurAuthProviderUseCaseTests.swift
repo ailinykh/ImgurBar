@@ -111,7 +111,8 @@ class ImgurAuthProviderUseCaseTests: XCTestCase {
         sut.authorize { receivedResult in
             switch (expectedResult, receivedResult) {
             case (.success(let expectedData), .success(let receivedData)):
-                XCTAssertEqual(expectedData, receivedData, file: file, line: line)
+                XCTAssertEqual(expectedData.accessToken, receivedData.accessToken, file: file, line: line)
+                XCTAssertEqual(expectedData.accountName, receivedData.accountName, file: file, line: line)
             case (.failure(let expectedError as NSError), .failure(let receivedError as NSError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:
@@ -132,11 +133,5 @@ class ImgurAuthProviderUseCaseTests: XCTestCase {
         let client = AuthClientStub()
         let sut = ImgurAuthProvider(clientId: "some_client_id", client: client)
         return (sut, client)
-    }
-}
-
-extension AuthData: Equatable {
-    public static func == (lhs: AuthData, rhs: AuthData) -> Bool {
-        lhs.accessToken == rhs.accessToken && lhs.accountName == rhs.accountName
     }
 }
