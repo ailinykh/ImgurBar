@@ -3,8 +3,8 @@
 //
 
 public struct AuthData {
-    let accessToken: String
-    let accountName: String
+    public let accessToken: String
+    public let accountName: String
     
     public init(accessToken: String, accountName: String) {
         self.accessToken = accessToken
