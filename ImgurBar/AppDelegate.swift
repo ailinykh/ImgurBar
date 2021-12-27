@@ -143,6 +143,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             screenshotsObserver.stop()
         }
     }
+    
+    func application(_ application: NSApplication, open urls: [URL]) {
+        urls.forEach {
+            NotificationCenter.default.post(name: .applicationOpenUrl, object: $0)
+        }
+    }
 }
 
 private protocol DeprecationWarningWorkaround {
@@ -159,4 +165,5 @@ extension AppDelegate: DeprecationWarningWorkaround {
 
 extension Notification.Name {
     static let terminateLauncher = Notification.Name("terminateLauncher")
+    static let applicationOpenUrl = Notification.Name("applicationOpenUrl")
 }
