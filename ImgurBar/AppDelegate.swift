@@ -37,6 +37,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let screenshotsObserver = ScreenshotsObserver()
     
+    private let clientId: String = {
+        guard let clientId = Bundle.main.infoDictionary?["imgur_client_id"] as? String else {
+            preconditionFailure("Please retreive the `client_id` from https://api.imgur.com/oauth2/addclient and add it to Info.plist for key `imgur_client_id`")
+        }
+        return clientId
+    }()
+    
     private lazy var preferencesWindowController: PreferencesWindowController = {
         let storyboard = NSStoryboard(name: "Preferences", bundle: .main)
         let windowController = storyboard.instantiateInitialController() as! PreferencesWindowController
@@ -60,10 +67,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         checkLaunchOnSystemStartup()
         setupStatusBar()
-        
-        guard let clientId = Bundle.main.infoDictionary?["imgur_client_id"] as? String else {
-            preconditionFailure("Please retreive the `client_id` from https://api.imgur.com/oauth2/addclient and add it to Info.plist for key `imgur_client_id`")
-        }
         
         let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder()))
         
