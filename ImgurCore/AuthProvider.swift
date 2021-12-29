@@ -13,6 +13,5 @@ public struct AuthData {
 }
 
 public protocol AuthProvider {
-    typealias Result = Swift.Result<AuthData, Error>
-    func authorize(completion: @escaping (Result) -> Void)
+    func authorize(completion: @escaping (Result<AuthData, Error>) -> Void)
 }
