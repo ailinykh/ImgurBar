@@ -195,8 +195,3 @@ extension AppDelegate: DeprecationWarningWorkaround {
         SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() as? [[String: AnyObject]]
     }
 }
-
-extension Notification.Name {
-    static let terminateLauncher = Notification.Name("terminateLauncher")
-    static let applicationOpenUrl = Notification.Name("applicationOpenUrl")
-}
