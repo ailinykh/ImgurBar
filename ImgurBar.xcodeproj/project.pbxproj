@@ -17,7 +17,6 @@
 		730A4C9C277A114A00CBF944 /* AuthProviderMainThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A4C9B277A114A00CBF944 /* AuthProviderMainThreadDecorator.swift */; };
 		7314576F275B6154003F42D1 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7314576E275B6154003F42D1 /* PreferencesWindowController.swift */; };
 		733A84BE2734673E00789747 /* ImgurCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; };
-		733A84C62734673E00789747 /* ImgurCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 733A84B82734673E00789747 /* ImgurCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		733A84C92734673E00789747 /* ImgurCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; };
 		733A84CA2734673E00789747 /* ImgurCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 733A84B62734673E00789747 /* ImgurCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		733A84D22734676900789747 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A29FE272E9DFF00515A69 /* ImageUploader.swift */; };
@@ -129,7 +128,6 @@
 		730A4C9B277A114A00CBF944 /* AuthProviderMainThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderMainThreadDecorator.swift; sourceTree = "<group>"; };
 		7314576E275B6154003F42D1 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		733A84B62734673E00789747 /* ImgurCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImgurCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		733A84B82734673E00789747 /* ImgurCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImgurCore.h; sourceTree = "<group>"; };
 		733A84BD2734673E00789747 /* ImgurCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImgurCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		733A84D5273467E200789747 /* ImgurUploaderUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurUploaderUseCaseTests.swift; sourceTree = "<group>"; };
 		735B6A9D275B9DED00AD8871 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 				730A2A02272EA37800515A69 /* HTTPClient.swift */,
 				730A2A00272EA05700515A69 /* Image.swift */,
 				730A29FE272E9DFF00515A69 /* ImageUploader.swift */,
-				733A84B82734673E00789747 /* ImgurCore.h */,
 				73F5D06B2742FA860005CE1D /* LocalImageProvider.swift */,
 				73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */,
 				73F5D05127413B030005CE1D /* RequestBuilder.swift */,
@@ -337,7 +334,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				733A84C62734673E00789747 /* ImgurCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
