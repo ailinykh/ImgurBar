@@ -2,6 +2,8 @@
 //  Copyright © 2021 ailinykh.com. All rights reserved.
 //
 
+import Foundation
+
 public class ImgurAuthProvider: AuthProvider {
     private let clientId: String
     private let client: AuthClient
