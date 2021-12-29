@@ -214,6 +214,17 @@
 			path = ImgurBarTests;
 			sourceTree = "<group>";
 		};
+		730A4C9F277C5FDC00CBF944 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				730A4C9D277C5EB400CBF944 /* Notification+ImgurBar.swift */,
+				73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */,
+				73D50B12274C19E700E87626 /* URLSession+ImgurBar.swift */,
+				73D50AF42749931D00E87626 /* UserNotificationProvider.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		733A84B72734673E00789747 /* ImgurCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,11 +286,8 @@
 				73D50B01274B820100E87626 /* LegacyNotificationProvider.swift */,
 				730A4C992779FEDF00CBF944 /* LegacyAuthClient.swift */,
 				730A4C972779FE1900CBF944 /* ModernAuthClient.swift */,
-				730A4C9D277C5EB400CBF944 /* Notification+ImgurBar.swift */,
-				73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */,
 				737571A7243B3BAA000B84FD /* ScreenshotsObserver.swift */,
-				73D50B12274C19E700E87626 /* URLSession+ImgurBar.swift */,
-				73D50AF42749931D00E87626 /* UserNotificationProvider.swift */,
+				730A4C9F277C5FDC00CBF944 /* Extensions */,
 				73757198243B1CF6000B84FD /* Assets.xcassets */,
 				737571A1243B1CF6000B84FD /* imgurBar.entitlements */,
 				737571A0243B1CF6000B84FD /* Info.plist */,
