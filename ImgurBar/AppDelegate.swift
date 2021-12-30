@@ -193,7 +193,3 @@ extension AppDelegate: DeprecationWarningWorkaround {
         SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() as? [[String: AnyObject]]
     }
 }
-
-extension String {
-    static let uploadSreenshotsAutomatically = "UploadSreenshotsAutomatically"
-}
