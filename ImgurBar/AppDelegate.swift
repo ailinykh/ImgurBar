@@ -162,14 +162,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return job?["OnDemand"] as? Bool ?? false
     }
     
-    private let uploadSreenshotsAutomatically = "UploadSreenshotsAutomatically"
-    
     private func getUploadScreenshotsSetting() -> Bool {
-        return UserDefaults.standard.bool(forKey: uploadSreenshotsAutomatically)
+        return UserDefaults.standard.bool(forKey: .uploadSreenshotsAutomatically)
     }
     
     private func setUploadSreenshotsSetting(_ enabled: Bool) {
-        UserDefaults.standard.set(enabled, forKey: uploadSreenshotsAutomatically)
+        UserDefaults.standard.set(enabled, forKey: .uploadSreenshotsAutomatically)
         if enabled {
             screenshotsObserver.start()
         } else {
@@ -194,4 +192,8 @@ extension AppDelegate: DeprecationWarningWorkaround {
     static var jobsDict: [[String: AnyObject]]? {
         SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() as? [[String: AnyObject]]
     }
+}
+
+extension String {
+    static let uploadSreenshotsAutomatically = "UploadSreenshotsAutomatically"
 }
