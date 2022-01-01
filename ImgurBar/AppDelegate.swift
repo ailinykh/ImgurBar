@@ -98,7 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        checkLaunchOnSystemStartup()
+        terminateLauncherIfNeeded()
         setupStatusBar()
         
         let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder()))
@@ -145,7 +145,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem!.button?.addSubview(view)
     }
     
-    private func checkLaunchOnSystemStartup() {
+    private func terminateLauncherIfNeeded() {
         let runningApps = NSWorkspace.shared.runningApplications
         let isRunning = !runningApps.filter { $0.bundleIdentifier == helperBundleIdentifier }.isEmpty
 
