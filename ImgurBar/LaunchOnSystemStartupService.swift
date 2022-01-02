@@ -6,8 +6,6 @@ import Foundation
 import ServiceManagement
 
 final class LaunchOnSystemStartupService {
-    private let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
-    
     func get() -> Bool {
         guard let jobs = (LaunchOnSystemStartupService.self as DeprecationWarningWorkaround.Type).jobsDict else {
             return false
@@ -17,7 +15,7 @@ final class LaunchOnSystemStartupService {
     }
     
     func set(value: Bool) {
-        let bundleId = self.helperBundleIdentifier as CFString
+        let bundleId = helperBundleIdentifier as CFString
         SMLoginItemSetEnabled(bundleId, value)
         print("LaunchOnSystemStartupSetting:", value)
     }

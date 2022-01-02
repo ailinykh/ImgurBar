@@ -17,6 +17,8 @@ private final class LocalImageProviderFacade: LocalImageConsumer {
     }
 }
 
+let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -24,8 +26,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var statusBarItem: NSStatusItem?
     private let view = DropView(frame: .zero)
-    
-    private let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
     
     private let notificationProvider: NotificationProvider = {
         guard #available(macOS 10.14, *) else {
