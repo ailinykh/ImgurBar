@@ -63,9 +63,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let tab = windowController.window?.contentViewController as? PreferencesTabViewController,
            let vc = tab.tabViewItems.first?.viewController as? GeneralPrefsViewController {
             
-            let startup = LaunchOnSystemStartupService()
-            vc.launchOnSystemStartup = startup.get()
-            vc.onLaunchOnSystemStartupChanged = startup.set
+            let startupService = LaunchOnSystemStartupService()
+            vc.launchOnSystemStartup = startupService.get()
+            vc.onLaunchOnSystemStartupChanged = startupService.set
             
             vc.uploadScreenshots = getUploadScreenshotsSetting()
             vc.onUploadScreenshotsChanged = setUploadSreenshotsSetting
