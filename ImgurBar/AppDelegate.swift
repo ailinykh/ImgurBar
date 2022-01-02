@@ -4,25 +4,6 @@
 
 import Cocoa
 import ImgurCore
-import ServiceManagement
-
-final class LaunchOnSystemStartupService {
-    private let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
-    
-    func getLaunchOnSystemStartupSetting() -> Bool {
-        guard let jobs = (AppDelegate.self as DeprecationWarningWorkaround.Type).jobsDict else {
-            return false
-        }
-        let job = jobs.first { ($0["Label"] as? String) == helperBundleIdentifier }
-        return job?["OnDemand"] as? Bool ?? false
-    }
-    
-    func setLaunchOnSystemStartupSetting(value: Bool) {
-        let bundleId = self.helperBundleIdentifier as CFString
-        SMLoginItemSetEnabled(bundleId, value)
-        print("LaunchOnSystemStartupSetting:", value)
-    }
-}
 
 private final class LocalImageProviderFacade: LocalImageConsumer {
     let onImage: (LocalImage) -> Void
@@ -171,14 +152,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    private func getLaunchOnSystemStartupSetting() -> Bool {
-        guard let jobs = (AppDelegate.self as DeprecationWarningWorkaround.Type).jobsDict else {
-            return false
-        }
-        let job = jobs.first { ($0["Label"] as? String) == helperBundleIdentifier }
-        return job?["OnDemand"] as? Bool ?? false
-    }
-    
     private func getUploadScreenshotsSetting() -> Bool {
         return UserDefaults.standard.bool(forKey: .uploadSreenshotsAutomatically)
     }
@@ -196,17 +169,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         urls.forEach {
             NotificationCenter.default.post(name: .applicationOpenUrl, object: $0)
         }
-    }
-}
-
-private protocol DeprecationWarningWorkaround {
-    static var jobsDict: [[String: AnyObject]]? { get }
-}
-
-extension AppDelegate: DeprecationWarningWorkaround {
-    // Workaround to silence "'SMCopyAllJobDictionaries' was deprecated in OS X 10.10" warning
-    @available(*, deprecated)
-    static var jobsDict: [[String: AnyObject]]? {
-        SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() as? [[String: AnyObject]]
     }
 }
