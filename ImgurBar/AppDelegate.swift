@@ -7,6 +7,27 @@ import ImgurCore
 
 let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
 
+final class ScreenshotUploadService {
+    let screenshotsObserver: ScreenshotsObserver
+    
+    init(screenshotsObserver: ScreenshotsObserver) {
+        self.screenshotsObserver = screenshotsObserver
+    }
+    
+    func get() -> Bool {
+        return UserDefaults.standard.bool(forKey: .uploadSreenshotsAutomatically)
+    }
+    
+    func set(enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: .uploadSreenshotsAutomatically)
+        if enabled {
+            screenshotsObserver.start()
+        } else {
+            screenshotsObserver.stop()
+        }
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
