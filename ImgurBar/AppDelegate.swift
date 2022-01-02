@@ -6,6 +6,24 @@ import Cocoa
 import ImgurCore
 import ServiceManagement
 
+final class LaunchOnSystemStartupService {
+    private let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
+    
+    func getLaunchOnSystemStartupSetting() -> Bool {
+        guard let jobs = (AppDelegate.self as DeprecationWarningWorkaround.Type).jobsDict else {
+            return false
+        }
+        let job = jobs.first { ($0["Label"] as? String) == helperBundleIdentifier }
+        return job?["OnDemand"] as? Bool ?? false
+    }
+    
+    func setLaunchOnSystemStartupSetting(value: Bool) {
+        let bundleId = self.helperBundleIdentifier as CFString
+        SMLoginItemSetEnabled(bundleId, value)
+        print("LaunchOnSystemStartupSetting:", value)
+    }
+}
+
 private final class LocalImageProviderFacade: LocalImageConsumer {
     let onImage: (LocalImage) -> Void
     
