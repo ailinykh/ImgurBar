@@ -81,12 +81,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let tab = windowController.window?.contentViewController as? PreferencesTabViewController,
            let vc = tab.tabViewItems.first?.viewController as? GeneralPrefsViewController {
-            vc.launchOnSystemStartup = getLaunchOnSystemStartupSetting()
-            vc.onLaunchOnSystemStartupChanged = { [weak self] changed in
-                guard let self = self else { return }
-                let bundleId = self.helperBundleIdentifier as CFString
-                SMLoginItemSetEnabled(bundleId, changed)
-            }
+            
+            let startup = LaunchOnSystemStartupService()
+            vc.launchOnSystemStartup = startup.getLaunchOnSystemStartupSetting()
+            vc.onLaunchOnSystemStartupChanged = startup.setLaunchOnSystemStartupSetting
+            
             vc.uploadScreenshots = getUploadScreenshotsSetting()
             vc.onUploadScreenshotsChanged = setUploadSreenshotsSetting
             
