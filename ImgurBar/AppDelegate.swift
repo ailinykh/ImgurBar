@@ -51,6 +51,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     private let screenshotsObserver = ScreenshotsObserver()
+    private lazy var screenshotService = {
+        ScreenshotUploadService(screenshotsObserver: screenshotsObserver)
+    }()
     
     private let clientId: String = {
 #if DEBUG
@@ -76,7 +79,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             vc.launchOnSystemStartup = startupService.get()
             vc.onLaunchOnSystemStartupChanged = startupService.set
             
-            let screenshotService = ScreenshotUploadService(screenshotsObserver: screenshotsObserver)
             vc.uploadScreenshots = screenshotService.get()
             vc.onUploadScreenshotsChanged = screenshotService.set
             
