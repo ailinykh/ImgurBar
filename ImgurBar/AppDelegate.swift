@@ -50,11 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return ModernAuthClient()
     }()
     
-    private let screenshotsObserver = ScreenshotsObserver()
-    private lazy var screenshotService = {
-        ScreenshotUploadService(screenshotsObserver: screenshotsObserver)
-    }()
-    
+    private let screenshotService = ScreenshotUploadService(screenshotsObserver: ScreenshotsObserver())
+
     private let clientId: String = {
 #if DEBUG
         guard let clientId = ProcessInfo.processInfo.environment["imgur_client_id"] else {
@@ -127,7 +124,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        screenshotsObserver.onURL = { [weak facade] url in
+        screenshotService.screenshotsObserver.onURL = { [weak facade] url in
             let localImage = LocalImage(fileUrl: url)
             facade?.consume(image: localImage)
         }
