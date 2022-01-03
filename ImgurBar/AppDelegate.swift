@@ -132,8 +132,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             facade?.consume(image: localImage)
         }
         
-        if getUploadScreenshotsSetting() {
-            screenshotsObserver.start()
+        if screenshotService.get() {
+            screenshotService.screenshotsObserver.start()
         }
         
         view.add(consumer: facade)
