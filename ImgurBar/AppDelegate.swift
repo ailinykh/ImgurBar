@@ -11,6 +11,9 @@ final class ScreenshotUploadService {
     let screenshotsObserver = ScreenshotsObserver()
     
     init() {
+        if get() {
+            screenshotsObserver.start()
+        }
     }
     
     func get() -> Bool {
@@ -126,10 +129,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         screenshotService.screenshotsObserver.onURL = { [weak facade] url in
             let localImage = LocalImage(fileUrl: url)
             facade?.consume(image: localImage)
-        }
-        
-        if screenshotService.get() {
-            screenshotService.screenshotsObserver.start()
         }
         
         view.add(consumer: facade)
