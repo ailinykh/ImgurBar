@@ -164,19 +164,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    private func getUploadScreenshotsSetting() -> Bool {
-        return UserDefaults.standard.bool(forKey: .uploadSreenshotsAutomatically)
-    }
-    
-    private func setUploadSreenshotsSetting(_ enabled: Bool) {
-        UserDefaults.standard.set(enabled, forKey: .uploadSreenshotsAutomatically)
-        if enabled {
-            screenshotsObserver.start()
-        } else {
-            screenshotsObserver.stop()
-        }
-    }
-    
     func application(_ application: NSApplication, open urls: [URL]) {
         urls.forEach {
             NotificationCenter.default.post(name: .applicationOpenUrl, object: $0)
