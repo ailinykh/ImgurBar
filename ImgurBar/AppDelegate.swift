@@ -8,10 +8,9 @@ import ImgurCore
 let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
 
 final class ScreenshotUploadService {
-    let screenshotsObserver: ScreenshotsObserver
+    let screenshotsObserver = ScreenshotsObserver()
     
-    init(screenshotsObserver: ScreenshotsObserver) {
-        self.screenshotsObserver = screenshotsObserver
+    init() {
     }
     
     func get() -> Bool {
@@ -50,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return ModernAuthClient()
     }()
     
-    private let screenshotService = ScreenshotUploadService(screenshotsObserver: ScreenshotsObserver())
+    private let screenshotService = ScreenshotUploadService()
 
     private let clientId: String = {
 #if DEBUG
