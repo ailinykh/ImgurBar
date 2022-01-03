@@ -76,8 +76,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             vc.launchOnSystemStartup = startupService.get()
             vc.onLaunchOnSystemStartupChanged = startupService.set
             
-            vc.uploadScreenshots = getUploadScreenshotsSetting()
-            vc.onUploadScreenshotsChanged = setUploadSreenshotsSetting
+            let screenshotService = ScreenshotUploadService(screenshotsObserver: screenshotsObserver)
+            vc.uploadScreenshots = screenshotService.get()
+            vc.onUploadScreenshotsChanged = screenshotService.set
             
             let authProvider = AuthProviderMainThreadDecorator(decoratee: ImgurAuthProvider(clientId: clientId, client: authClient))
             
