@@ -300,11 +300,11 @@
 				737571A7243B3BAA000B84FD /* ScreenshotObserver.swift */,
 				730A4CA62781F22B00CBF944 /* ScreenshotUploadService.swift */,
 				730A4C9F277C5FDC00CBF944 /* Extensions */,
+				73DCFBF8275BB14A00236BFB /* Preferences */,
 				73757198243B1CF6000B84FD /* Assets.xcassets */,
 				737571A1243B1CF6000B84FD /* imgurBar.entitlements */,
 				737571A0243B1CF6000B84FD /* Info.plist */,
 				7375719D243B1CF6000B84FD /* Main.storyboard */,
-				73DCFBF8275BB14A00236BFB /* Preferences */,
 			);
 			path = ImgurBar;
 			sourceTree = "<group>";
