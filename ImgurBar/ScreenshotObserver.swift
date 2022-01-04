@@ -4,7 +4,7 @@
 
 import Foundation
 
-class ScreenshotsObserver: NSObject {
+class ScreenshotObserver: NSObject {
     private lazy var query: NSMetadataQuery = {
         let query = NSMetadataQuery()
         query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1")

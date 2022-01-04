@@ -8,7 +8,7 @@ import ImgurCore
 let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
 
 final class ScreenshotUploadService {
-    let screenshotObserver = ScreenshotsObserver()
+    let screenshotObserver = ScreenshotObserver()
     
     init() {
         if get() {
