@@ -8,9 +8,10 @@ import ImgurCore
 let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
 
 final class ScreenshotUploadService {
-    let observer = ScreenshotObserver()
+    private let observer = ScreenshotObserver()
     
-    init() {
+    init(onURL: @escaping (URL) -> Void) {
+        observer.onURL = onURL
         if get() {
             observer.start()
         }
@@ -52,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return ModernAuthClient()
     }()
     
-    private let screenshotService = ScreenshotUploadService()
+    private var screenshotService: ScreenshotUploadService!
 
     private let clientId: String = {
 #if DEBUG
@@ -126,7 +127,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        screenshotService.observer.onURL = { [weak facade] url in
+        screenshotService = ScreenshotUploadService() { [weak facade] url in
             let localImage = LocalImage(fileUrl: url)
             facade?.consume(image: localImage)
         }
