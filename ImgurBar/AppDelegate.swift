@@ -116,6 +116,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindowController.window?.makeKeyAndOrderFront(sender)
     }
     
+    func application(_ application: NSApplication, open urls: [URL]) {
+        urls.forEach {
+            NotificationCenter.default.post(name: .applicationOpenUrl, object: $0)
+        }
+    }
+    
     // MARK: - private
     
     private func setupStatusBar() {
@@ -133,12 +139,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         if isRunning {
             DistributedNotificationCenter.default().post(name: .terminateLauncher, object: Bundle.main.bundleIdentifier!)
-        }
-    }
-    
-    func application(_ application: NSApplication, open urls: [URL]) {
-        urls.forEach {
-            NotificationCenter.default.post(name: .applicationOpenUrl, object: $0)
         }
     }
 }
