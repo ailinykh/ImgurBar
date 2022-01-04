@@ -8,11 +8,11 @@ import ImgurCore
 let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
 
 final class ScreenshotUploadService {
-    let screenshotObserver = ScreenshotObserver()
+    let observer = ScreenshotObserver()
     
     init() {
         if get() {
-            screenshotObserver.start()
+            observer.start()
         }
     }
     
@@ -23,9 +23,9 @@ final class ScreenshotUploadService {
     func set(enabled: Bool) {
         UserDefaults.standard.set(enabled, forKey: .uploadSreenshotsAutomatically)
         if enabled {
-            screenshotObserver.start()
+            observer.start()
         } else {
-            screenshotObserver.stop()
+            observer.stop()
         }
     }
 }
@@ -126,7 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        screenshotService.screenshotObserver.onURL = { [weak facade] url in
+        screenshotService.observer.onURL = { [weak facade] url in
             let localImage = LocalImage(fileUrl: url)
             facade?.consume(image: localImage)
         }
