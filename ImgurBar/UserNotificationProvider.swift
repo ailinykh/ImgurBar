@@ -26,6 +26,12 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
         UNUserNotificationCenter.current().requestAuthorization(options: .alert) { authorized, error in
             print("UNUserNotificationCenter - authorized:", authorized, error ?? "")
             NotificationCenter.default.post(name: .authorizationStatusChanged, object: authorized)
+            // TODO: - find proprietary way to discover auth status changes
+            if !authorized {
+                DispatchQueue.global().asyncAfter(deadline: .now() + 5) { [weak self] in
+                    self?.checkAuthorizationStatus()
+                }
+            }
         }
     }
     
