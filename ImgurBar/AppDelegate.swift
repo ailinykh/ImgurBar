@@ -12,8 +12,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet var menu: NSMenu!
     
-    private var statusBarItem: NSStatusItem?
     private let view = DropView(frame: .zero)
+    private lazy var statusBarItem: NSStatusItem = {
+        let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        item.button?.image = NSImage(named: "status_item")
+        item.menu = menu
+        
+        view.frame = item.button?.frame ?? .zero
+        item.button?.addSubview(view)
+        return item
+    }()
     
     private let notificationProvider: NotificationProvider = {
         guard #available(macOS 10.14, *) else {
@@ -85,12 +93,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         terminateLauncherIfNeeded()
-        setupStatusBar()
         
         let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder()))
         
         let facade = LocalImageProviderFacade() { [weak self] localImage in
-            self?.statusBarItem?.button?.startAnimation()
+            self?.statusBarItem.button?.startAnimation()
             
             uploader.upload(localImage) { result in
                 switch (result) {
@@ -99,7 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 case .failure(let error):
                     print(error)
                 }
-                self?.statusBarItem?.button?.stopAnimation()
+                self?.statusBarItem.button?.stopAnimation()
             }
         }
         
@@ -123,15 +130,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - private
-    
-    private func setupStatusBar() {
-        statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        statusBarItem!.button?.image = NSImage(named: "status_item")
-        statusBarItem!.menu = menu
-        
-        view.frame = statusBarItem?.button?.frame ?? .zero
-        statusBarItem!.button?.addSubview(view)
-    }
     
     private func terminateLauncherIfNeeded() {
         let runningApps = NSWorkspace.shared.runningApplications
