@@ -12,11 +12,8 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
         super.init()
         
         UNUserNotificationCenter.current().requestAuthorization(options: .alert) { authorized, error in
-            if let error = error {
-                print("UNUserNotificationCenter:", authorized, error)
-            } else {
-                print("UNUserNotificationCenter: authorized:", authorized)
-            }
+            print("UNUserNotificationCenter - authorized:", authorized, error ?? "")
+            NotificationCenter.default.post(name: .authorizationStatusChanged, object: authorized)
         }
         
         UNUserNotificationCenter.current().delegate = self
