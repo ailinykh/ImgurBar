@@ -228,7 +228,6 @@
 				730A4C9D277C5EB400CBF944 /* Notification+ImgurBar.swift */,
 				73F9DBDB2441A07500BD9CEE /* NSButton+Animation.swift */,
 				73D50B12274C19E700E87626 /* URLSession+ImgurBar.swift */,
-				73D50AF42749931D00E87626 /* UserNotificationProvider.swift */,
 				730A4CA0277E621F00CBF944 /* String+ImgurBar.swift */,
 			);
 			path = Extensions;
@@ -299,6 +298,7 @@
 				730A4C972779FE1900CBF944 /* ModernAuthClient.swift */,
 				737571A7243B3BAA000B84FD /* ScreenshotObserver.swift */,
 				730A4CA62781F22B00CBF944 /* ScreenshotUploadService.swift */,
+				73D50AF42749931D00E87626 /* UserNotificationProvider.swift */,
 				730A4C9F277C5FDC00CBF944 /* Extensions */,
 				73DCFBF8275BB14A00236BFB /* Preferences */,
 				73757198243B1CF6000B84FD /* Assets.xcassets */,
