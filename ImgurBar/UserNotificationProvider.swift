@@ -11,10 +11,7 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
     override init() {
         super.init()
         
-        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { authorized, error in
-            print("UNUserNotificationCenter - authorized:", authorized, error ?? "")
-            NotificationCenter.default.post(name: .authorizationStatusChanged, object: authorized)
-        }
+        checkAuthorizationStatus()
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -23,6 +20,13 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
         let category = UNNotificationCategory(identifier: "IMAGE_UPLOADED", actions: [action], intentIdentifiers: ["OPEN_URL"], hiddenPreviewsBodyPlaceholder: "", options: [])
         
         UNUserNotificationCenter.current().setNotificationCategories([category])
+    }
+    
+    private func checkAuthorizationStatus() {
+        UNUserNotificationCenter.current().requestAuthorization(options: .alert) { authorized, error in
+            print("UNUserNotificationCenter - authorized:", authorized, error ?? "")
+            NotificationCenter.default.post(name: .authorizationStatusChanged, object: authorized)
+        }
     }
     
     // MARK: - UNUserNotificationCenterDelegate
