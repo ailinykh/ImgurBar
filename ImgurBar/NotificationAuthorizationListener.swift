@@ -18,4 +18,8 @@ class NotificationAuthorizationListener: NSObject {
             self?.isAuthorized = authorized
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
