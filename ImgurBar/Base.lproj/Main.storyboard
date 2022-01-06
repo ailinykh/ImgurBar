@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
     </dependencies>
     <scenes>
@@ -679,7 +678,7 @@
                         <outlet property="menu" destination="Hpv-LZ-vMO" id="ArI-3A-6s5"/>
                     </connections>
                 </customObject>
-                <customObject id="GUb-52-rO4" customClass="NotificationAuthorizationListener" customModule="ImgurBar" customModuleProvider="target"/>
+                <customObject id="GUb-52-rO4" customClass="NotificationAuthorizationFacade" customModule="ImgurBar" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="Hpv-LZ-vMO">

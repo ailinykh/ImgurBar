@@ -4,7 +4,7 @@
 
 import Cocoa
 
-class NotificationAuthorizationListener: NSObject {
+class NotificationAuthorizationFacade: NSObject {
     @objc dynamic var isAuthorized = false
     
     override init() {
