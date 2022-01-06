@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -679,6 +679,7 @@
                         <outlet property="menu" destination="Hpv-LZ-vMO" id="ArI-3A-6s5"/>
                     </connections>
                 </customObject>
+                <customObject id="GUb-52-rO4" customClass="NotificationAuthorizationListener" customModule="ImgurBar" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="Hpv-LZ-vMO">
@@ -686,6 +687,14 @@
                         <menuItem title="Preferences" keyEquivalent="," id="aJP-Ph-j1z">
                             <connections>
                                 <action selector="openPreferencesAction:" target="Voe-Tx-rLC" id="OWX-Z8-HeB"/>
+                                <binding destination="GUb-52-rO4" name="enabled" keyPath="isAuthorized" id="QGg-xR-QQu"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Enable notifications" image="exclamationmark.circle" catalog="system" id="fHi-nb-xFF">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="enableNotificationsAction:" target="Voe-Tx-rLC" id="qpd-Fd-3ar"/>
+                                <binding destination="GUb-52-rO4" name="hidden" keyPath="isAuthorized" id="Rxg-Xj-7qj"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="HdS-pQ-fPO"/>
@@ -700,4 +709,7 @@
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="exclamationmark.circle" catalog="system" width="15" height="15"/>
+    </resources>
 </document>

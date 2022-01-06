@@ -123,6 +123,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindowController.window?.makeKeyAndOrderFront(sender)
     }
     
+    @IBAction func enableNotificationsAction(_ sender: Any?) {
+        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.notifications")!)
+    }
+    
     func application(_ application: NSApplication, open urls: [URL]) {
         urls.forEach {
             NotificationCenter.default.post(name: .applicationOpenUrl, object: $0)
