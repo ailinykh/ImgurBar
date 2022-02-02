@@ -59,7 +59,7 @@ private final class ImgurAuthMapper {
             .reduce([String:String](), { partialResult, part in
                 var partialResult = partialResult
                 let parts = part.split(separator: "=")
-                if let key = parts.first, let value = parts.last {
+                if parts.count == 2, let key = parts.first, let value = parts.last {
                     partialResult[String(key)] = String(value)
                 }
                 return partialResult
