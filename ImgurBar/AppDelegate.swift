@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return item
     }()
     
-    private let notificationProvider: NotificationProvider = {
+    private lazy var notificationProvider: NotificationProvider = {
         guard #available(macOS 10.14, *) else {
             return LegacyNotifiactionProvider()
         }
@@ -116,6 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         view.add(consumer: facade)
+        _ = notificationProvider // initialize provider
     }
     
     @IBAction func openPreferencesAction(_ sender: Any?) {
