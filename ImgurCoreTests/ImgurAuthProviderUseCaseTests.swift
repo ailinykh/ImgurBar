@@ -40,7 +40,7 @@ class ImgurAuthProviderUseCaseTests: XCTestCase {
     func test_authorize_deliversAuthData() {
         let (sut, client) = makeSUT()
         let url = URL(string: "https://an-url.com/#access_token=some-token&account_username=some-name")!
-        let authData = AuthData(accessToken: "some-token", accountName: "some-name")
+        let authData = Account(accessToken: "some-token", accountName: "some-name")
         expect(sut, toCompleteWith: .success(authData)) {
             client.complete(with: .success(url))
         }

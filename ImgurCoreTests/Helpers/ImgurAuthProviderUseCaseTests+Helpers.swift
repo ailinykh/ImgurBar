@@ -6,7 +6,7 @@ import XCTest
 import ImgurCore
 
 extension ImgurAuthProviderUseCaseTests {
-    func expect(_ sut: ImgurAuthProvider, toCompleteWith expectedResult: Result<AuthData, Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: ImgurAuthProvider, toCompleteWith expectedResult: Result<Account, Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Authorization expectation")
         sut.authorize { receivedResult in
             switch (expectedResult, receivedResult) {

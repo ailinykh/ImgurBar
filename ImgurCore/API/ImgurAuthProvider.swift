@@ -18,7 +18,7 @@ public class ImgurAuthProvider: AuthProvider {
         self.client = client
     }
     
-    public func authorize(completion: @escaping (Result<AuthData, Swift.Error>) -> Void) {
+    public func authorize(completion: @escaping (Result<Account, Swift.Error>) -> Void) {
         let url = URL(string:"https://api.imgur.com/oauth2/authorize?client_id=\(clientId)&response_type=token")!
         client.open(url: url) { result in
             switch result {
@@ -39,7 +39,7 @@ public class ImgurAuthProvider: AuthProvider {
 }
 
 private final class ImgurAuthMapper {
-    static func handle(url: URL) throws -> AuthData {
+    static func handle(url: URL) throws -> Account {
         let parts = url.absoluteString.split(separator: "#")
         guard parts.count > 1, let path = parts.last
         else {
@@ -51,7 +51,7 @@ private final class ImgurAuthMapper {
             throw ImgurAuthProvider.Error.insufficientParams
         }
         
-        return AuthData(accessToken: token, accountName: account)
+        return Account(accessToken: token, accountName: account)
     }
     
     static func parse(path: String) -> [String: String] {

@@ -14,7 +14,7 @@ final class AuthProviderMainThreadDecorator: AuthProvider {
         self.decoratee = decoratee
     }
     
-    func authorize(completion: @escaping (Result<AuthData, Error>) -> Void) {
+    func authorize(completion: @escaping (Result<Account, Error>) -> Void) {
         decoratee.authorize { result in
             guard Thread.isMainThread else {
                 DispatchQueue.main.async {
