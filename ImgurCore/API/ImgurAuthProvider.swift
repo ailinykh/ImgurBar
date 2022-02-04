@@ -51,7 +51,7 @@ private final class ImgurAuthMapper {
             throw ImgurAuthProvider.Error.insufficientParams
         }
         
-        return Account(accessToken: token, accountName: account)
+        return Account(token: token, username: account)
     }
     
     static func parse(path: String) -> [String: String] {

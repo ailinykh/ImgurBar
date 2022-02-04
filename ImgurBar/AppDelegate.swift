@@ -73,10 +73,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 authProvider.authorize { result in
                     switch result {
                     case .success(let data):
-                        print("Got token:", data.accessToken)
+                        print("Got token:", data.token)
                         let model = AccountViewModel()
                         model.onLogout = { print("logout") }
-                        model.name = data.accountName
+                        model.name = data.username
                         model.authorized = true
                         vc.display(model)
                     case .failure(let error):

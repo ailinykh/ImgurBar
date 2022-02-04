@@ -3,12 +3,12 @@
 //
 
 public struct Account {
-    public let accessToken: String
-    public let accountName: String
+    public let token: String
+    public let username: String
     
-    public init(accessToken: String, accountName: String) {
-        self.accessToken = accessToken
-        self.accountName = accountName
+    public init(token: String, username: String) {
+        self.token = token
+        self.username = username
     }
 }
 
