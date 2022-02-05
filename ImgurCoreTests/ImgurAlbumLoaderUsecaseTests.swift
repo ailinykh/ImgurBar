@@ -6,19 +6,9 @@ import ImgurCore
 import XCTest
 
 class ImgurAlbumLoader: AlbumLoader {
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, Equatable {
         case invalidData
-    }
-    
-    struct Response<T: Decodable>: Decodable {
-        var data: T
-        var success: Bool
-        var status: Int
-    }
-    
-    struct RemoteAlbum: Decodable {
-        let id: String
-        let title: String
+        case badRequest(String)
     }
     
     let client: HTTPClient
@@ -31,15 +21,55 @@ class ImgurAlbumLoader: AlbumLoader {
         var request = URLRequest(url: URL(string: "https://an-url")!)
         request.setValue("Bearer: \(account.token)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
-            if let (data, _) = try? result.get() {
+            switch result {
+            case .success(let (data, _)):
                 do {
-                    let response = try JSONDecoder().decode(Response<[RemoteAlbum]>.self, from: data)
-                    completion(.success(response.data.map({Album(id: $0.id, title: $0.title)})))
+                    let albums = try ImgurAlbumMapper.map(data: data)
+                    completion(.success(albums))
                 } catch {
-                    completion(.failure(Error.invalidData))
+                    completion(.failure(error))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
+    }
+}
+
+private final class ImgurAlbumMapper {
+    struct ResponseSuccess: Decodable {
+        struct Album: Decodable {
+            let id: String
+            let title: String
+        }
+        
+        var data: [Album]
+        var success: Bool
+        var status: Int
+    }
+    
+    struct ResponseFailure: Decodable {
+        struct Error: Decodable {
+            let error: String
+            let request: String
+            let method: String
+        }
+        
+        var data: Error
+        var success: Bool
+        var status: Int
+    }
+    
+    static func map(data: Data) throws -> [Album] {
+        do {
+            let response = try JSONDecoder().decode(ResponseSuccess.self, from: data)
+            return response.data.map({Album(id: $0.id, title: $0.title)})
+        } catch {
+            if let response = try? JSONDecoder().decode(ResponseFailure.self, from: data) {
+                throw ImgurAlbumLoader.Error.badRequest(response.data.error)
+            }
+        }
+        throw ImgurAlbumLoader.Error.invalidData
     }
 }
 
@@ -75,6 +105,14 @@ class ImgurAlbumLoaderUsecaseTests: XCTestCase {
         }
     }
     
+    func test_loadDeliversErrorOnBadRequest() {
+        let (sut, client) = makeSUT()
+        let error = ImgurAlbumLoader.Error.badRequest("The access token provided is invalid.")
+        expect(sut, toCompleteWith: .failure(error)) {
+            client.complete(with: makeResponseError(), response: .any)
+        }
+    }
+    
     //MARK: - Helpers
     
     private func makeResponseData(for albums: [Album], status: Int = 0) -> Data {
@@ -84,6 +122,20 @@ class ImgurAlbumLoaderUsecaseTests: XCTestCase {
             },
             "success": status == 0,
             "status": status
+        ].compactMapValues { $0 }
+        
+        return try! JSONSerialization.data(withJSONObject: json)
+    }
+    
+    private func makeResponseError() -> Data {
+        let json = [
+            "data": [
+                "error": "The access token provided is invalid.",
+                "request": "/3/account/username/albums/",
+                "method": "GET"
+            ],
+            "success": false,
+            "status": 403
         ].compactMapValues { $0 }
         
         return try! JSONSerialization.data(withJSONObject: json)
