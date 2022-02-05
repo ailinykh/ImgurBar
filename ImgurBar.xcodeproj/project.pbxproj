@@ -33,6 +33,7 @@
 		735B6AA0275BA0C100AD8871 /* GeneralPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */; };
 		7362787127ADB7960083CF86 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362787027ADB7960083CF86 /* Album.swift */; };
 		7362787727ADCE030083CF86 /* AlbumLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362787627ADCE030083CF86 /* AlbumLoader.swift */; };
+		7362787927AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362787827AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
@@ -148,6 +149,7 @@
 		735B6A9F275BA0C100AD8871 /* GeneralPrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPrefsViewController.swift; sourceTree = "<group>"; };
 		7362787027ADB7960083CF86 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		7362787627ADCE030083CF86 /* AlbumLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumLoader.swift; sourceTree = "<group>"; };
+		7362787827AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurAlbumLoaderUsecaseTests.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				733A84D5273467E200789747 /* ImgurUploaderUseCaseTests.swift */,
 				73F5D05327413D6F0005CE1D /* MultipartFormBuilderUseCaseTests.swift */,
 				73C79B1827774F5200B242CC /* ImgurAuthProviderUseCaseTests.swift */,
+				7362787827AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift */,
 			);
 			path = ImgurCoreTests;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73F5D05427413D6F0005CE1D /* MultipartFormBuilderUseCaseTests.swift in Sources */,
+				7362787927AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift in Sources */,
 				730A4C942779F7A400CBF944 /* ImgurAuthProviderUseCaseTests+Helpers.swift in Sources */,
 				73F5D04427401D610005CE1D /* ImgurUploaderUseCaseTests+Helpers.swift in Sources */,
 				733A84D6273467E200789747 /* ImgurUploaderUseCaseTests.swift in Sources */,
