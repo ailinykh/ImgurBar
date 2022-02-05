@@ -17,14 +17,26 @@ class ImgurAlbumLoader: AlbumLoader {
     }
     
     func load(for account: Account, completion: @escaping (Result<[Album], Swift.Error>) -> Void) {
-        
+        let request = URLRequest(url: URL(string: "https://an-url")!)
+        client.perform(request: request) { result in
+            completion(.success([]))
+        }
     }
 }
 
 class ImgurAlbumLoaderUsecaseTests: XCTestCase {
-    func test_albumLoaderDoesNoeLoadAnythingOnInit() {
+    func test_albumLoaderCallsHTTPClientLoadMethod() {
+        let (sut, client) = makeSUT()
+        expect(sut, toCompleteWith: .success([])) {
+            client.complete(with: Data(), response: .any)
+        }
+    }
+    
+    //MARK: - Helpers
+    
+    private func makeSUT() -> (sut: ImgurAlbumLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let _ = ImgurAlbumLoader(client: client)
-        XCTAssertEqual(client.messages.count, 0)
+        let sut = ImgurAlbumLoader(client: client)
+        return (sut, client)
     }
 }
