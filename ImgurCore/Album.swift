@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct Album {
+public struct Album: Equatable {
     public let id: String
     public let title: String
 }
