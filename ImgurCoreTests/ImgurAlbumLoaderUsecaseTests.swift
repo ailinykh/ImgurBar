@@ -32,8 +32,12 @@ class ImgurAlbumLoader: AlbumLoader {
         request.setValue("Bearer: \(account.token)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
             if let (data, _) = try? result.get() {
-                let response = try! JSONDecoder().decode(Response.self, from: data)
-                completion(.success(response.data.map({Album(id: $0.id, title: $0.title)})))
+                do {
+                    let response = try JSONDecoder().decode(Response.self, from: data)
+                    completion(.success(response.data.map({Album(id: $0.id, title: $0.title)})))
+                } catch {
+                    completion(.failure(Error.invalidData))
+                }
             }
         }
     }
@@ -60,6 +64,14 @@ class ImgurAlbumLoaderUsecaseTests: XCTestCase {
         
         expect(sut, toCompleteWith: .success(albums)) {
             client.complete(with: makeResponseData(for: albums), response: .any)
+        }
+    }
+    
+    func test_loadDeliversErrorOnInvalidJson() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWith: .failure(.invalidData)) {
+            client.complete(with: "invalid json".data(using: .utf8)!, response: .any)
         }
     }
     
