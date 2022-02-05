@@ -17,7 +17,8 @@ class ImgurAlbumLoader: AlbumLoader {
     }
     
     func load(for account: Account, completion: @escaping (Result<[Album], Swift.Error>) -> Void) {
-        let request = URLRequest(url: URL(string: "https://an-url")!)
+        var request = URLRequest(url: URL(string: "https://an-url")!)
+        request.setValue("Bearer: \(account.token)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
             completion(.success([]))
         }
@@ -25,11 +26,15 @@ class ImgurAlbumLoader: AlbumLoader {
 }
 
 class ImgurAlbumLoaderUsecaseTests: XCTestCase {
-    func test_albumLoaderCallsHTTPClientLoadMethod() {
+    func test_albumLoaderSetsAuthorizationTokenForRequest() {
         let (sut, client) = makeSUT()
-        expect(sut, toCompleteWith: .success([])) {
-            client.complete(with: Data(), response: .any)
-        }
+        let account = Account(token: "some-token", username: "some-username")
+        
+        sut.load(for: account) { _ in }
+        
+        let request = client.getRequest()
+        let authorization = request.value(forHTTPHeaderField:"Authorization")
+        XCTAssertEqual(authorization, "Bearer: some-token")
     }
     
     //MARK: - Helpers
