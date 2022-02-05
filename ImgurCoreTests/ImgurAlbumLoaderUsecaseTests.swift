@@ -24,19 +24,3 @@ class ImgurAlbumLoaderUsecaseTests: XCTestCase {
         XCTAssertEqual(client.messages.count, 0)
     }
 }
-
-private final class HTTPClientSpy: HTTPClient {
-    private(set) var messages = [(request: URLRequest, completion: (HTTPClient.Result) -> Void)]()
-    
-    func perform(request: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) {
-        messages.append((request, completion))
-    }
-    
-    func getRequest(at index: Int = 0) -> URLRequest {
-        return messages[index].request
-    }
-    
-    func complete(with data: Data, response: HTTPURLResponse, at index: Int = 0) {
-        messages[index].completion(.success((data, response)))
-    }
-}

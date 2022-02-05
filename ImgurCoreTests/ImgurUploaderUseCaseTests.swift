@@ -89,23 +89,6 @@ class ImgurUploaderUseCaseTests: XCTestCase {
     }
 }
 
-
-private final class HTTPClientSpy: HTTPClient {
-    private var messages = [(request: URLRequest, completion: (HTTPClient.Result) -> Void)]()
-    
-    func perform(request: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) {
-        messages.append((request, completion))
-    }
-    
-    func getRequest(at index: Int = 0) -> URLRequest {
-        return messages[index].request
-    }
-    
-    func complete(with data: Data, response: HTTPURLResponse, at index: Int = 0) {
-        messages[index].completion(.success((data, response)))
-    }
-}
-
 private final class RequestBuilderStub: RequestBuilder {
     func makeRequest(for fileUrl: URL) -> URLRequest {
         URLRequest(url: fileUrl)
