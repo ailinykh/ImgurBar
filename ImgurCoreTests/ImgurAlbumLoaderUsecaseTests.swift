@@ -10,15 +10,15 @@ class ImgurAlbumLoader: AlbumLoader {
         case invalidData
     }
     
-    struct Response: Decodable {
-        struct RemoteAlbum: Decodable {
-            let id: String
-            let title: String
-        }
-        
-        var data: [RemoteAlbum]
+    struct Response<T: Decodable>: Decodable {
+        var data: T
         var success: Bool
         var status: Int
+    }
+    
+    struct RemoteAlbum: Decodable {
+        let id: String
+        let title: String
     }
     
     let client: HTTPClient
@@ -33,7 +33,7 @@ class ImgurAlbumLoader: AlbumLoader {
         client.perform(request: request) { result in
             if let (data, _) = try? result.get() {
                 do {
-                    let response = try JSONDecoder().decode(Response.self, from: data)
+                    let response = try JSONDecoder().decode(Response<[RemoteAlbum]>.self, from: data)
                     completion(.success(response.data.map({Album(id: $0.id, title: $0.title)})))
                 } catch {
                     completion(.failure(Error.invalidData))
