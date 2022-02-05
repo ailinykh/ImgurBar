@@ -94,9 +94,3 @@ private final class RequestBuilderStub: RequestBuilder {
         URLRequest(url: fileUrl)
     }
 }
-
-private extension HTTPURLResponse {
-    static var any: HTTPURLResponse {
-        return HTTPURLResponse()
-    }
-}
