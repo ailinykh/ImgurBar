@@ -6,13 +6,17 @@ import ImgurCore
 import XCTest
 
 class ImgurAlbumLoader: AlbumLoader {
+    public enum Error: Swift.Error {
+        case invalidData
+    }
+    
     let client: HTTPClient
     
     init(client: HTTPClient) {
         self.client = client
     }
     
-    func load(for account: Account, completion: @escaping (Result<[Album], Error>) -> Void) {
+    func load(for account: Account, completion: @escaping (Result<[Album], Swift.Error>) -> Void) {
         
     }
 }
