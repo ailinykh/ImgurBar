@@ -5,53 +5,27 @@
 import Foundation
 import ImgurCore
 
+private extension String {
+    static let token = "token"
+    static let username = "username"
+}
+
 final class LocalAuthProvider: AuthProvider {
     private let keychain = KeychainService(service: "LocalAuthProvider")
     
-    public enum Error: Swift.Error {
-        case notFound
-    }
-    
-    func authorize(completion: @escaping (Result<Account, Swift.Error>) -> Void) {
-        guard let data = keychain.data(for: "Account"), let account = try? NSKeyedUnarchiver.unarchivedObject(ofClass: LocalAccount.self, from: data) else {
-            completion(.failure(Error.notFound))
+    func authorize(completion: @escaping (Result<Account, Error>) -> Void) {
+        guard let tokenData = keychain.data(for: .token), let token = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSString.self, from: tokenData), let usernameData = keychain.data(for: .username), let username = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSString.self, from: usernameData) else {
+            let error = NSError(domain: "not found", code: -1)
+            completion(.failure(error))
             return
         }
         
-        completion(.success(Account(token: account.token, username: account.username)))
+        completion(.success(Account(token: token as String, username: username as String)))
     }
     
     func save(account: Account) {
-        let localAccount = LocalAccount()
-        localAccount.token = account.token
-        localAccount.username = account.username
-        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: localAccount, requiringSecureCoding: false) else {
-            print("Failed to archive account", account)
-            return
-        }
-        keychain.set(data: data, for: "Account")
-    }
-}
-
-@objc(IBLocalAccount)
-private final class LocalAccount: NSObject, NSCoding {
-    var token: String = ""
-    var username: String = ""
-    
-    func encode(with coder: NSCoder) {
-        coder.encode(token, forKey: "token")
-        coder.encode(username, forKey: "username")
-    }
-    
-    override init() {}
-    
-    init?(coder: NSCoder) {
-        guard let token = coder.decodeObject(of: NSString.self, forKey: "token"), let username = coder.decodeObject(of: NSString.self, forKey: "account") else {
-            print("local account decoding failed")
-            return
-        }
-        self.token = token as String
-        self.username = username as String
+        keychain.set(data: account.token.data(using: .utf8)!, for: .token)
+        keychain.set(data: account.username.data(using: .utf8)!, for: .username)
     }
 }
 
@@ -66,6 +40,7 @@ private final class KeychainService {
         let query:[String: AnyObject] = [
             kSecAttrService as String: service as NSString,
             kSecAttrAccount as String: key as NSString,
+            kSecClass as String: kSecClassKey,
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnData as String: kCFBooleanTrue
         ]
@@ -74,7 +49,8 @@ private final class KeychainService {
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         
         guard status == errSecSuccess else {
-            print("SecItemCopyMatching failed", status)
+            let message = SecCopyErrorMessageString(status, nil)
+            print("SecItemCopyMatching failed", status, message ?? "nil")
             return nil
         }
         
@@ -90,7 +66,7 @@ private final class KeychainService {
         var query:[String: AnyObject] = [
             kSecAttrService as String: service as NSString,
             kSecAttrAccount as String: key as NSString,
-            kSecClass as String: kSecClassIdentity,
+            kSecClass as String: kSecClassKey,
             kSecValueData as String: data as AnyObject
         ]
         
@@ -106,7 +82,8 @@ private final class KeychainService {
         }
         
         if status != errSecSuccess {
-            print("SecItemAdd/SecItemUpdate failed:", status)
+            let message = SecCopyErrorMessageString(status, nil)
+            print("SecItemAdd failed:", status, message ?? "nil")
         }
     }
 }
