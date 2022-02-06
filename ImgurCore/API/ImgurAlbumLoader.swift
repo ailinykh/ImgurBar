@@ -27,6 +27,7 @@ public class ImgurAlbumLoader: AlbumLoader {
                     let albums = try ImgurAlbumMapper.map(data: data)
                     completion(.success(albums))
                 } catch {
+                    print(String(data: data, encoding: .utf8) ?? "nil")
                     completion(.failure(error))
                 }
             case .failure(let error):
@@ -40,7 +41,7 @@ private final class ImgurAlbumMapper {
     struct ResponseSuccess: Decodable {
         struct Album: Decodable {
             let id: String
-            let title: String
+            let title: String?
         }
         
         var data: [Album]
@@ -63,7 +64,7 @@ private final class ImgurAlbumMapper {
     static func map(data: Data) throws -> [Album] {
         do {
             let response = try JSONDecoder().decode(ResponseSuccess.self, from: data)
-            return response.data.map({Album(id: $0.id, title: $0.title)})
+            return response.data.map({Album(id: $0.id, title: $0.title ?? "")})
         } catch {
             if let response = try? JSONDecoder().decode(ResponseFailure.self, from: data) {
                 throw ImgurAlbumLoader.Error.badRequest(response.data.error)
