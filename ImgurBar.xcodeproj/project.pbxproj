@@ -37,6 +37,7 @@
 		7362787B27AEEFA30083CF86 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362787A27AEEFA30083CF86 /* HTTPClientSpy.swift */; };
 		7362787D27AEF0370083CF86 /* ImgurAlbumLoaderUsecaseTests+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362787C27AEF0370083CF86 /* ImgurAlbumLoaderUsecaseTests+Helpers.swift */; };
 		7362787F27AEF47E0083CF86 /* HTTPURLResponse+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362787E27AEF47E0083CF86 /* HTTPURLResponse+Helpers.swift */; };
+		7362788127AFE2170083CF86 /* ImgurAlbumLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362788027AFE2170083CF86 /* ImgurAlbumLoader.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
@@ -156,6 +157,7 @@
 		7362787A27AEEFA30083CF86 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		7362787C27AEF0370083CF86 /* ImgurAlbumLoaderUsecaseTests+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImgurAlbumLoaderUsecaseTests+Helpers.swift"; sourceTree = "<group>"; };
 		7362787E27AEF47E0083CF86 /* HTTPURLResponse+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Helpers.swift"; sourceTree = "<group>"; };
+		7362788027AFE2170083CF86 /* ImgurAlbumLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurAlbumLoader.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				73F5D04227401D380005CE1D /* API */,
 				7362787027ADB7960083CF86 /* Album.swift */,
+				7362787627ADCE030083CF86 /* AlbumLoader.swift */,
 				730A4C9127790E9400CBF944 /* AuthClient.swift */,
 				73C79B1227774AC700B242CC /* AuthProvider.swift */,
 				730A2A02272EA37800515A69 /* HTTPClient.swift */,
@@ -260,7 +263,6 @@
 				73F5D06B2742FA860005CE1D /* LocalImageProvider.swift */,
 				73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */,
 				73F5D05127413B030005CE1D /* RequestBuilder.swift */,
-				7362787627ADCE030083CF86 /* AlbumLoader.swift */,
 			);
 			path = ImgurCore;
 			sourceTree = "<group>";
@@ -269,10 +271,10 @@
 			isa = PBXGroup;
 			children = (
 				73F5D04127400F7A0005CE1D /* Helpers */,
+				7362787827AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift */,
+				73C79B1827774F5200B242CC /* ImgurAuthProviderUseCaseTests.swift */,
 				733A84D5273467E200789747 /* ImgurUploaderUseCaseTests.swift */,
 				73F5D05327413D6F0005CE1D /* MultipartFormBuilderUseCaseTests.swift */,
-				73C79B1827774F5200B242CC /* ImgurAuthProviderUseCaseTests.swift */,
-				7362787827AEB1590083CF86 /* ImgurAlbumLoaderUsecaseTests.swift */,
 			);
 			path = ImgurCoreTests;
 			sourceTree = "<group>";
@@ -364,6 +366,7 @@
 		73F5D04227401D380005CE1D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7362788027AFE2170083CF86 /* ImgurAlbumLoader.swift */,
 				730A4C952779F83C00CBF944 /* ImgurAuthProvider.swift */,
 				73F5D04527401D950005CE1D /* ImgurUploader.swift */,
 				73F5D0552741721D0005CE1D /* MultipartFormBuilder.swift */,
@@ -596,6 +599,7 @@
 				73C79B1327774AC700B242CC /* AuthProvider.swift in Sources */,
 				73F5D06C2742FA860005CE1D /* LocalImageProvider.swift in Sources */,
 				733A84D42734676900789747 /* HTTPClient.swift in Sources */,
+				7362788127AFE2170083CF86 /* ImgurAlbumLoader.swift in Sources */,
 				730A4C962779F83C00CBF944 /* ImgurAuthProvider.swift in Sources */,
 				7362787127ADB7960083CF86 /* Album.swift in Sources */,
 			);
