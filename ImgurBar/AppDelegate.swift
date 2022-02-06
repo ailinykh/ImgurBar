@@ -52,42 +52,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return clientId
     }()
     
-    private lazy var preferencesWindowController: PreferencesWindowController = {
-        let storyboard = NSStoryboard(name: "Preferences", bundle: .main)
-        let windowController = storyboard.instantiateInitialController() as! PreferencesWindowController
-        
-        if let tab = windowController.window?.contentViewController as? PreferencesTabViewController,
-           let vc = tab.tabViewItems.first?.viewController as? GeneralPrefsViewController {
-            
-            let startupService = LaunchOnSystemStartupService()
-            vc.launchOnSystemStartup = startupService.get()
-            vc.onLaunchOnSystemStartupChanged = startupService.set
-            
-            vc.uploadScreenshots = screenshotService.get()
-            vc.onUploadScreenshotsChanged = screenshotService.set
-            
-            let authProvider = AuthProviderMainThreadDecorator(decoratee: ImgurAuthProvider(clientId: clientId, client: authClient))
-            
-            let model = AccountViewModel()
-            model.onLogin = { [weak self] in
-                authProvider.authorize { result in
-                    switch result {
-                    case .success(let data):
-                        print("Got token:", data.token)
-                        let model = AccountViewModel()
-                        model.onLogout = { print("logout") }
-                        model.name = data.username
-                        model.authorized = true
-                        vc.display(model)
-                    case .failure(let error):
-                        print("Auth failed", error)
-                    }
-                }
-            }
-            vc.display(model)
-        }
-        
-        return windowController
+    private lazy var preferencesPresenter: PreferencesPresenter = {
+        let authProvider = AuthProviderMainThreadDecorator(decoratee: ImgurAuthProvider(clientId: clientId, client: authClient))
+        return PreferencesPresenter(authProvider: authProvider, screenshotService: screenshotService)
     }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -120,6 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openPreferencesAction(_ sender: Any?) {
+        let preferencesWindowController = preferencesPresenter.makeController()
         preferencesWindowController.showWindow(sender)
         preferencesWindowController.window?.makeKeyAndOrderFront(sender)
     }
