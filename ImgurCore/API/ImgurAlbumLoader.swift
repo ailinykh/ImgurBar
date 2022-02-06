@@ -17,7 +17,8 @@ public class ImgurAlbumLoader: AlbumLoader {
     }
     
     public func load(for account: Account, completion: @escaping (Result<[Album], Swift.Error>) -> Void) {
-        var request = URLRequest(url: URL(string: "https://an-url")!)
+        let url = URL(string: "https://api.imgur.com/3/account/\(account.username)/albums/")!
+        var request = URLRequest(url: url)
         request.setValue("Bearer: \(account.token)", forHTTPHeaderField: "Authorization")
         client.perform(request: request) { result in
             switch result {
