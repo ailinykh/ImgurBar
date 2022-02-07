@@ -14,7 +14,7 @@ class ImgurAlbumLoaderUsecaseTests: XCTestCase {
         
         let request = client.getRequest()
         let authorization = request.value(forHTTPHeaderField:"Authorization")
-        XCTAssertEqual(authorization, "Bearer: some-token")
+        XCTAssertEqual(authorization, "Bearer some-token")
     }
     
     func test_loadDeliversAlbumsOnSuccess() {
