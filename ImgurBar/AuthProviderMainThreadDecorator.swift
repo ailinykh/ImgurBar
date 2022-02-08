@@ -3,8 +3,6 @@
 //
 
 import Foundation
-
-import Foundation
 import ImgurCore
 
 final class AuthProviderMainThreadDecorator: AuthProvider {
