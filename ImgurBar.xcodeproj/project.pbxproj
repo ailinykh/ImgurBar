@@ -40,6 +40,7 @@
 		7362788127AFE2170083CF86 /* ImgurAlbumLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362788027AFE2170083CF86 /* ImgurAlbumLoader.swift */; };
 		7362788327B012F10083CF86 /* PreferencesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362788227B012F10083CF86 /* PreferencesPresenter.swift */; };
 		7362788527B0354D0083CF86 /* LocalAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362788427B0354D0083CF86 /* LocalAuthProvider.swift */; };
+		7362788B27B260FB0083CF86 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362788A27B260FB0083CF86 /* StorageService.swift */; };
 		73757195243B1CF5000B84FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73757194243B1CF5000B84FD /* AppDelegate.swift */; };
 		73757199243B1CF6000B84FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73757198243B1CF6000B84FD /* Assets.xcassets */; };
 		7375719F243B1CF6000B84FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7375719D243B1CF6000B84FD /* Main.storyboard */; };
@@ -162,6 +163,7 @@
 		7362788027AFE2170083CF86 /* ImgurAlbumLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurAlbumLoader.swift; sourceTree = "<group>"; };
 		7362788227B012F10083CF86 /* PreferencesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPresenter.swift; sourceTree = "<group>"; };
 		7362788427B0354D0083CF86 /* LocalAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthProvider.swift; sourceTree = "<group>"; };
+		7362788A27B260FB0083CF86 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		73757191243B1CF5000B84FD /* ImgurBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgurBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73757194243B1CF5000B84FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73757198243B1CF6000B84FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				73F5D06B2742FA860005CE1D /* LocalImageProvider.swift */,
 				73D50AF9274B6B5A00E87626 /* NotificationProvider.swift */,
 				73F5D05127413B030005CE1D /* RequestBuilder.swift */,
+				7362788A27B260FB0083CF86 /* StorageService.swift */,
 			);
 			path = ImgurCore;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				730A4C9227790E9400CBF944 /* AuthClient.swift in Sources */,
 				73C79B1327774AC700B242CC /* AuthProvider.swift in Sources */,
 				73F5D06C2742FA860005CE1D /* LocalImageProvider.swift in Sources */,
+				7362788B27B260FB0083CF86 /* StorageService.swift in Sources */,
 				733A84D42734676900789747 /* HTTPClient.swift in Sources */,
 				7362788127AFE2170083CF86 /* ImgurAlbumLoader.swift in Sources */,
 				730A4C962779F83C00CBF944 /* ImgurAuthProvider.swift in Sources */,
