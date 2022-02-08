@@ -15,10 +15,14 @@ private struct AccountData: Codable {
 }
 
 final class LocalAuthProvider: AuthProvider {
-    private let keychain = KeychainService()
+    private let storage: StorageService
+    
+    init(storage: StorageService) {
+        self.storage = storage
+    }
     
     func authorize(completion: @escaping (Result<Account, Error>) -> Void) {
-        guard let data = keychain.get(for: .account), let account = try? JSONDecoder().decode(AccountData.self, from: data) else {
+        guard let data = storage.get(for: .account), let account = try? JSONDecoder().decode(AccountData.self, from: data) else {
             let error = NSError(domain: "not found", code: -1)
             completion(.failure(error))
             return
@@ -30,10 +34,10 @@ final class LocalAuthProvider: AuthProvider {
     func save(account: Account) {
         let accountData = AccountData(token: account.token, username: account.username)
         let data = try! JSONEncoder().encode(accountData)
-        keychain.set(data: data, for: .account)
+        storage.set(data: data, for: .account)
     }
     
     func delete() {
-        keychain.delete(for: .account)
+        storage.delete(for: .account)
     }
 }
