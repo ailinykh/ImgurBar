@@ -15,7 +15,7 @@ private struct AccountData: Codable {
 }
 
 final class LocalAuthProvider: AuthProvider {
-    private let keychain = KeychainService(service: "LocalAuthProvider")
+    private let keychain = KeychainService()
     
     func authorize(completion: @escaping (Result<Account, Error>) -> Void) {
         guard let data = keychain.data(for: .account), let account = try? JSONDecoder().decode(AccountData.self, from: data) else {
@@ -31,24 +31,20 @@ final class LocalAuthProvider: AuthProvider {
         let accountData = AccountData(token: account.token, username: account.username)
         let data = try! JSONEncoder().encode(accountData)
         keychain.set(data: data, for: .account)
-        print(String(data: data, encoding: .utf8) ?? "failed to store account in the keychain")
+    }
+    
+    func delete() {
+        keychain.delete(for: .account)
     }
 }
 
 private final class KeychainService {
-    let service: String
-    
-    init(service: String) {
-        self.service = service
-    }
-    
     func data(for key: String) -> Data? {
-        let query:[String: AnyObject] = [
-            kSecAttrService as String: service as NSString,
-            kSecAttrAccount as String: key as NSString,
-            kSecClass as String: kSecClassInternetPassword,
-            kSecMatchLimit as String: kSecMatchLimitOne,
-            kSecReturnData as String: kCFBooleanTrue
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key,
+            kSecMatchLimit: kSecMatchLimitOne,
+            kSecReturnData: true
         ]
         
         var item: AnyObject?
@@ -69,18 +65,18 @@ private final class KeychainService {
     }
     
     func set(data: Data, for key: String) {
-        var query:[String: AnyObject] = [
-            kSecAttrService as String: service as NSString,
-            kSecAttrAccount as String: key as NSString,
-            kSecClass as String: kSecClassInternetPassword,
-            kSecValueData as String: data as AnyObject
+        var query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessible: kSecAttrAccessibleAlways,
+            kSecAttrAccount: key,
+            kSecValueData: data
         ]
         
         var status = SecItemAdd(query as CFDictionary, nil)
         
         if status == errSecDuplicateItem {
             print("Item \"\(key)\" already exists")
-            query.removeValue(forKey: kSecValueData as String)
+            query.removeValue(forKey: kSecValueData)
             let attributes:[String: AnyObject] = [
                 kSecValueData as String: data as AnyObject
             ]
@@ -90,6 +86,21 @@ private final class KeychainService {
         if status != errSecSuccess {
             let message = SecCopyErrorMessageString(status, nil)
             print("SecItemAdd failed:", status, message ?? "nil")
+        }
+    }
+    
+    func delete(for key: String) {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessible: kSecAttrAccessibleAlways,
+            kSecAttrAccount: key,
+            kSecReturnData: true
+        ]
+        
+        let status = SecItemDelete(query as CFDictionary)
+        if status != errSecSuccess {
+            let message = SecCopyErrorMessageString(status, nil)
+            print("SecItemDelete failed:", status, message ?? "nil")
         }
     }
 }
