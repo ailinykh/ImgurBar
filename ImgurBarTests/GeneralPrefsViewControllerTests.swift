@@ -49,12 +49,12 @@ class GeneralPrefsViewControllerTests: XCTestCase {
 
     func test_accountViewModel_actions() {
         let viewController = makeSUT()
-        let model = AccountViewModel()
+        let accountViewmodel = AccountViewModel()
         var actions = [String] ()
-        model.onLogin = { actions.append("onLogin") }
-        model.onLogout = { actions.append("onLogout") }
+        accountViewmodel.onLogin = { actions.append("onLogin") }
+        accountViewmodel.onLogout = { actions.append("onLogout") }
         
-        viewController.display(model)
+        viewController.display(accountViewmodel)
         
         XCTAssertEqual(actions, [])
         

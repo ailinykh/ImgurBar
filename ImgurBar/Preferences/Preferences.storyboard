@@ -100,7 +100,7 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="loginButtonAction:" target="vSN-kb-RAL" id="pG2-7n-J1h"/>
-                                                        <binding destination="vSN-kb-RAL" name="hidden" keyPath="account.authorized" id="PG7-DU-fVl"/>
+                                                        <binding destination="vSN-kb-RAL" name="hidden" keyPath="accountViewModel.authorized" id="ahH-qw-IjJ"/>
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ENI-Zx-poC">
@@ -111,7 +111,7 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="logoutButtonAction:" target="vSN-kb-RAL" id="YvZ-tb-eSK"/>
-                                                        <binding destination="vSN-kb-RAL" name="hidden" keyPath="account.authorized" id="zk3-2U-kUd">
+                                                        <binding destination="vSN-kb-RAL" name="hidden" keyPath="accountViewModel.authorized" id="Ke2-Am-gZ6">
                                                             <dictionary key="options">
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
@@ -136,12 +136,12 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="vSN-kb-RAL" name="hidden" keyPath="account.authorized" id="TzH-sP-U1O">
+                                                <binding destination="vSN-kb-RAL" name="hidden" keyPath="accountViewModel.authorized" id="Ayt-AX-QvZ">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="vSN-kb-RAL" name="value" keyPath="account.name" id="coh-kP-0eA"/>
+                                                <binding destination="vSN-kb-RAL" name="value" keyPath="accountViewModel.name" id="PSm-Tc-239"/>
                                             </connections>
                                         </textField>
                                     </subviews>

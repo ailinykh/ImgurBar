@@ -30,7 +30,7 @@ class GeneralPrefsViewController: NSViewController {
         }
     }
     
-    @objc dynamic var account: AccountViewModel?
+    @objc dynamic var accountViewModel: AccountViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +38,14 @@ class GeneralPrefsViewController: NSViewController {
     }
     
     func display(_ model: AccountViewModel) {
-        account = model
+        accountViewModel = model
     }
     
     @IBAction func loginButtonAction(_ sender: AnyObject?) {
-        account?.onLogin()
+        accountViewModel?.onLogin()
     }
     
     @IBAction func logoutButtonAction(_ sender: AnyObject?) {
-        account?.onLogout()
+        accountViewModel?.onLogout()
     }
 }
