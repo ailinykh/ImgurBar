@@ -31,9 +31,9 @@ final class PreferencesPresenter {
             vc.uploadScreenshots = screenshotService.get()
             vc.onUploadScreenshotsChanged = screenshotService.set
             
-            let model = AccountViewModel()
-            model.onLogin = { [weak self] in
-                self?.authProvider.authorize { result in
+            let accountViewModel = AccountViewModel()
+            accountViewModel.onLogin = { [weak self] in
+                self?.remoteAuthProvider.authorize { result in
                     switch result {
                     case .success(let data):
                         print("Got token:", data.token)
@@ -47,9 +47,20 @@ final class PreferencesPresenter {
                     }
                 }
             }
-            vc.display(model)
+            vc.display(accountViewModel)
         }
         
         return windowController
+    }
+    
+    private func handle(account: Account, viewController: GeneralPrefsViewController) {
+        let accountViewModel = AccountViewModel()
+        accountViewModel.onLogout = { [weak self] in
+            print("logout")
+            self?.localAuthProvider.remove()
+        }
+        accountViewModel.name = account.username
+        accountViewModel.authorized = true
+        viewController.display(accountViewModel)
     }
 }
