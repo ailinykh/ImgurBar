@@ -7,11 +7,13 @@ import ImgurCore
 
 final class PreferencesPresenter {
     
-    let authProvider: AuthProvider
+    let localAuthProvider: PersistentAuthProvider
+    let remoteAuthProvider: AuthProvider
     let screenshotService: ScreenshotUploadService
     
-    init(authProvider: AuthProvider, screenshotService: ScreenshotUploadService) {
-        self.authProvider = authProvider
+    init(localAuthProvider: PersistentAuthProvider, remoteAuthProvider: AuthProvider, screenshotService: ScreenshotUploadService) {
+        self.localAuthProvider = localAuthProvider
+        self.remoteAuthProvider = remoteAuthProvider
         self.screenshotService = screenshotService
     }
     
