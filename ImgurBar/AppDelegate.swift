@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var menu: NSMenu!
     
     private let view = DropView(frame: .zero)
+    private let httpClient = URLSession.shared
     private lazy var statusBarItem: NSStatusItem = {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         item.button?.image = NSImage(named: "status_item")
@@ -61,7 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let _ = statusBarItem // trigger icon appear
         terminateLauncherIfNeeded()
         
-        let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: URLSession.shared, clientId: clientId, builder: MultipartFormBuilder()))
+        let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: httpClient, clientId: clientId, builder: MultipartFormBuilder()))
         
         let facade = LocalImageProviderFacade() { [weak self] localImage in
             self?.statusBarItem.button?.startAnimation()
