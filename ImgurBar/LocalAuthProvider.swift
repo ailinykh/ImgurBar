@@ -14,7 +14,7 @@ private struct AccountData: Codable {
     let username: String
 }
 
-final class LocalAuthProvider: AuthProvider {
+final class LocalAuthProvider: PersistentAuthProvider {
     private let storage: StorageService
     
     init(storage: StorageService) {
@@ -37,7 +37,7 @@ final class LocalAuthProvider: AuthProvider {
         storage.set(data: data, for: .account)
     }
     
-    func delete() {
+    func remove() {
         storage.delete(for: .account)
     }
 }
