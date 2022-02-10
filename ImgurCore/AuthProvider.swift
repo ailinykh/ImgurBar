@@ -15,3 +15,8 @@ public struct Account {
 public protocol AuthProvider {
     func authorize(completion: @escaping (Result<Account, Error>) -> Void)
 }
+
+public protocol PersistentAuthProvider: AuthProvider {
+    func save(account: Account)
+    func remove()
+}
