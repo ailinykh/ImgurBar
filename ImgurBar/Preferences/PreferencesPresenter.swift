@@ -31,23 +31,27 @@ final class PreferencesPresenter {
             vc.uploadScreenshots = screenshotService.get()
             vc.onUploadScreenshotsChanged = screenshotService.set
             
-            let accountViewModel = AccountViewModel()
-            accountViewModel.onLogin = { [weak self] in
-                self?.remoteAuthProvider.authorize { result in
-                    switch result {
-                    case .success(let data):
-                        print("Got token:", data.token)
-                        let model = AccountViewModel()
-                        model.onLogout = { print("logout") }
-                        model.name = data.username
-                        model.authorized = true
-                        vc.display(model)
-                    case .failure(let error):
-                        print("Auth failed", error)
+            localAuthProvider.authorize { [weak self] result in
+                switch result {
+                case .success(let account):
+                    self?.handle(account: account, viewController: vc)
+                case .failure:
+                    let accountViewModel = AccountViewModel()
+                    accountViewModel.onLogin = {
+                        self?.remoteAuthProvider.authorize { result in
+                            switch result {
+                            case .success(let account):
+                                print("Got token:", account.token)
+                                self?.localAuthProvider.save(account: account)
+                                self?.handle(account: account, viewController: vc)
+                            case .failure(let error):
+                                print("Auth failed", error)
+                            }
+                        }
                     }
+                    vc.display(accountViewModel)
                 }
             }
-            vc.display(accountViewModel)
         }
         
         return windowController
