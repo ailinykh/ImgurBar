@@ -54,7 +54,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     private lazy var preferencesPresenter: PreferencesPresenter = {
-        let localAuthProvider = LocalAuthProvider(storage: DefaultsService())
+#if DEBUG
+        let storage = DefaultsService()
+#else
+        let storage = KeychainService()
+#endif
+        let localAuthProvider = LocalAuthProvider(storage: storage)
         let imgurAuthProvider = ImgurAuthProvider(clientId: clientId, client: authClient)
         let authProviderMainThreadDecorator = AuthProviderMainThreadDecorator(decoratee: imgurAuthProvider)
         return PreferencesPresenter(localAuthProvider: localAuthProvider, remoteAuthProvider: authProviderMainThreadDecorator, screenshotService: screenshotService)
