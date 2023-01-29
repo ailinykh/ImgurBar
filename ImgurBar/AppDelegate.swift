@@ -12,6 +12,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet var menu: NSMenu!
     
+    private weak var preferencesWindow: NSWindow?
+    
     private let view = DropView(frame: .zero)
     private let httpClient = URLSession.shared
     private lazy var statusBarItem: NSStatusItem = {
@@ -95,9 +97,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openPreferencesAction(_ sender: Any?) {
-        let preferencesWindowController = preferencesPresenter.makeController()
-        preferencesWindowController.showWindow(sender)
-        preferencesWindowController.window?.makeKeyAndOrderFront(sender)
+        // prevent multiple windows opening
+        if let preferencesWindow = preferencesWindow {
+            preferencesWindow.orderFrontRegardless()
+        } else {
+            let preferencesWindowController = preferencesPresenter.makeController()
+            preferencesWindowController.showWindow(sender)
+            preferencesWindowController.window?.makeKeyAndOrderFront(sender)
+            preferencesWindow = preferencesWindowController.window
+        }
     }
     
     @IBAction func enableNotificationsAction(_ sender: Any?) {
