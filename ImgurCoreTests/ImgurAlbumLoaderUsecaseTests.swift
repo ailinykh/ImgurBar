@@ -8,7 +8,11 @@ import XCTest
 class ImgurAlbumLoaderUsecaseTests: XCTestCase {
     func test_loadSetsAuthorizationTokenForRequest() {
         let (sut, client) = makeSUT()
-        let account = Account(token: "some-token", username: "some-username")
+        let account = Account(
+            accessToken: "some-token",
+            refreshToken: "refresh-token",
+            expiresIn: 86400,
+            username: "some-username")
         
         sut.load(for: account) { _ in }
         

@@ -11,7 +11,7 @@ extension ImgurAuthProviderUseCaseTests {
         sut.authorize { receivedResult in
             switch (expectedResult, receivedResult) {
             case (.success(let expectedData), .success(let receivedData)):
-                XCTAssertEqual(expectedData.token, receivedData.token, file: file, line: line)
+                XCTAssertEqual(expectedData.accessToken, receivedData.accessToken, file: file, line: line)
                 XCTAssertEqual(expectedData.username, receivedData.username, file: file, line: line)
             case (.failure(let expectedError as NSError), .failure(let receivedError as NSError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
