@@ -4,6 +4,10 @@
 
 import Foundation
 
+public extension String {
+    static let imageUploadCompleted = "com.ailinykh.imgurbar.image_upload_completed"
+}
+
 public protocol NotificationProvider {
     func sendNotification(identifier: String, title: String, text: String)
 }

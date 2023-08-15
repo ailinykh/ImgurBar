@@ -31,19 +31,25 @@ public final class ImgurUploader: ImageUploader {
     }
     
     let client: HTTPClient
-    let clientId: String
+    let auth: Authorization
     let builder: RequestBuilder
     
-    public init(client: HTTPClient, clientId: String, builder: RequestBuilder) {
+    public init(client: HTTPClient, auth: Authorization, builder: RequestBuilder) {
         self.client = client
-        self.clientId = clientId
+        self.auth = auth
         self.builder = builder
     }
     
     public func upload(_ localImage: LocalImage, completion: @escaping (ImageUploader.Result) -> Void) {
         var request = try! builder.makeRequest(for: localImage.fileUrl)
         request.url = apiUrl
-        request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
+        switch auth {
+        case .clientId(let clientId):
+            request.setValue("Client-ID \(clientId)", forHTTPHeaderField: "Authorization")
+        case .bearerToken(let token):
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
         client.perform(request: request) { result in
             switch result {
             case .success(let (data, _)):

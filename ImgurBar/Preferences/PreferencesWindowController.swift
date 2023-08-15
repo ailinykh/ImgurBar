@@ -6,6 +6,10 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController {
     
+    deinit {
+        print(#function, self)
+    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
     }

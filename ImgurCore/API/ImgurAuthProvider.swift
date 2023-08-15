@@ -47,11 +47,20 @@ private final class ImgurAuthMapper {
         }
         
         let dict = parse(path: String(path))
-        guard let token = dict["access_token"], let account = dict["account_username"] else {
+        guard
+            let accessToken = dict["access_token"],
+            let refreshToken = dict["refresh_token"],
+            let expires_in = dict["expires_in"],
+            let expiresIn = TimeInterval(expires_in),
+            let username = dict["account_username"] else {
             throw ImgurAuthProvider.Error.insufficientParams
         }
         
-        return Account(token: token, username: account)
+        return Account(
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+            expiresIn: expiresIn,
+            username: username)
     }
     
     static func parse(path: String) -> [String: String] {

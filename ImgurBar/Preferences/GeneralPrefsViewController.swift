@@ -11,6 +11,7 @@ class AccountViewModel: NSObject {
     
     var onLogin = {}
     var onLogout = {}
+    var onViewDidAppear = {}
 }
 
 class GeneralPrefsViewController: NSViewController {
@@ -31,10 +32,10 @@ class GeneralPrefsViewController: NSViewController {
     }
     
     @objc dynamic var accountViewModel: AccountViewModel?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
+        
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        accountViewModel?.onViewDidAppear()
     }
     
     func display(_ model: AccountViewModel) {
