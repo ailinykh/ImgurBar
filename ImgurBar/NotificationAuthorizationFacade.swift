@@ -9,7 +9,11 @@ class NotificationAuthorizationFacade: NSObject {
     
     override init() {
         super.init()
-        NotificationCenter.default.addObserver(forName: .authorizationStatusChanged, object: nil, queue: nil) { [weak self] note in
+        NotificationCenter.default.addObserver(
+            forName: .notificationCenterAuthorizationStatusChanged,
+            object: nil,
+            queue: nil
+        ) { [weak self] note in
             guard let authorized = note.object as? Bool else {
                 print("expected `note.object` as boolean", note)
                 return

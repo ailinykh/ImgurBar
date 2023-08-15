@@ -2,12 +2,18 @@
 //  Copyright © 2021 ailinykh.com. All rights reserved.
 //
 
-public struct Account {
-    public let token: String
+import Foundation
+
+public struct Account: Codable {
+    public let accessToken: String
+    public let refreshToken: String
+    public let expiresIn: TimeInterval
     public let username: String
     
-    public init(token: String, username: String) {
-        self.token = token
+    public init(accessToken: String, refreshToken: String, expiresIn: TimeInterval, username: String) {
+        self.accessToken = accessToken
+        self.refreshToken = refreshToken
+        self.expiresIn = expiresIn
         self.username = username
     }
 }

@@ -15,9 +15,17 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
         
         UNUserNotificationCenter.current().delegate = self
         
-        let action = UNNotificationAction(identifier: "OPEN_URL", title: "Open", options: [])
+        let action = UNNotificationAction(
+            identifier: "OPEN_URL",
+            title: "Open",
+            options: [])
         
-        let category = UNNotificationCategory(identifier: "IMAGE_UPLOADED", actions: [action], intentIdentifiers: ["OPEN_URL"], hiddenPreviewsBodyPlaceholder: "", options: [])
+        let category = UNNotificationCategory(
+            identifier: .imageUploadCompleted,
+            actions: [action],
+            intentIdentifiers: ["OPEN_URL"],
+            hiddenPreviewsBodyPlaceholder: "",
+            options: [])
         
         UNUserNotificationCenter.current().setNotificationCategories([category])
     }
@@ -25,7 +33,9 @@ final class UserNotificationProvider: NSObject, UNUserNotificationCenterDelegate
     private func checkAuthorizationStatus() {
         UNUserNotificationCenter.current().requestAuthorization(options: .alert) { authorized, error in
             print("UNUserNotificationCenter - authorized:", authorized, error ?? "")
-            NotificationCenter.default.post(name: .authorizationStatusChanged, object: authorized)
+            NotificationCenter.default.post(
+                name: .notificationCenterAuthorizationStatusChanged,
+                object: authorized)
             // TODO: - find proprietary way to discover auth status changes
             if !authorized {
                 DispatchQueue.global().asyncAfter(deadline: .now() + 5) { [weak self] in
@@ -62,7 +72,10 @@ extension UserNotificationProvider: NotificationProvider {
         content.categoryIdentifier = identifier
         content.body = text
         
-        let request = UNNotificationRequest(identifier: "image_uploaded", content: content, trigger: nil)
+        let request = UNNotificationRequest(
+            identifier: .imageUploadCompleted,
+            content: content,
+            trigger: nil)
         
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {

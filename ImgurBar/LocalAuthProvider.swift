@@ -9,11 +9,6 @@ private extension String {
     static let account = "account"
 }
 
-private struct AccountData: Codable {
-    let token: String
-    let username: String
-}
-
 final class LocalAuthProvider: PersistentAuthProvider {
     private let storage: StorageService
     
@@ -22,18 +17,17 @@ final class LocalAuthProvider: PersistentAuthProvider {
     }
     
     func authorize(completion: @escaping (Result<Account, Error>) -> Void) {
-        guard let data = storage.get(for: .account), let account = try? JSONDecoder().decode(AccountData.self, from: data) else {
+        guard let data = storage.get(for: .account), let account = try? JSONDecoder().decode(Account.self, from: data) else {
             let error = NSError(domain: "not found", code: -1)
             completion(.failure(error))
             return
         }
         
-        completion(.success(Account(token: account.token, username: account.username)))
+        completion(.success(account))
     }
     
     func save(account: Account) {
-        let accountData = AccountData(token: account.token, username: account.username)
-        let data = try! JSONEncoder().encode(accountData)
+        let data = try! JSONEncoder().encode(account)
         storage.set(data: data, for: .account)
     }
     

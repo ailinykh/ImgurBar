@@ -8,7 +8,11 @@ import ImgurCore
 extension ImgurAlbumLoaderUsecaseTests {
     func expect(_ sut: ImgurAlbumLoader, toCompleteWith expectedResult: Swift.Result<[Album], ImgurAlbumLoader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for upload completion")
-        let account = Account(token: "a-token", username: "a-username")
+        let account = Account(
+            accessToken: "access-token",
+            refreshToken: "refresh-token",
+            expiresIn: 86400,
+            username: "some-username")
         
         sut.load(for: account) { receivedResult in
             switch (receivedResult, expectedResult) {

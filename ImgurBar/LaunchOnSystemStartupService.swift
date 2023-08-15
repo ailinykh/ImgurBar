@@ -10,12 +10,12 @@ final class LaunchOnSystemStartupService {
         guard let jobs = (LaunchOnSystemStartupService.self as DeprecationWarningWorkaround.Type).jobsDict else {
             return false
         }
-        let job = jobs.first { ($0["Label"] as? String) == helperBundleIdentifier }
+        let job = jobs.first { ($0["Label"] as? String) == .helperBundleIdentifier }
         return job?["OnDemand"] as? Bool ?? false
     }
     
     func set(value: Bool) {
-        let bundleId = helperBundleIdentifier as CFString
+        let bundleId = String.helperBundleIdentifier as CFString
         SMLoginItemSetEnabled(bundleId, value)
         print("LaunchOnSystemStartupSetting:", value)
     }

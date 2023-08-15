@@ -5,7 +5,9 @@
 import Cocoa
 import ImgurCore
 
-let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
+extension String {
+    static let helperBundleIdentifier = "com.ailinykh.ImgurBarHelper"
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -55,23 +57,45 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return clientId
     }()
     
-    private lazy var preferencesPresenter: PreferencesPresenter = {
+    private lazy var localAuthProvider: PersistentAuthProvider = {
 #if DEBUG
         let storage = DefaultsService()
 #else
         let storage = KeychainService()
 #endif
-        let localAuthProvider = LocalAuthProvider(storage: storage)
+        return LocalAuthProvider(storage: storage)
+    }()
+    
+    private lazy var preferencesPresenter: PreferencesPresenter = {
         let imgurAuthProvider = ImgurAuthProvider(clientId: clientId, client: authClient)
         let authProviderMainThreadDecorator = AuthProviderMainThreadDecorator(decoratee: imgurAuthProvider)
-        return PreferencesPresenter(localAuthProvider: localAuthProvider, remoteAuthProvider: authProviderMainThreadDecorator, screenshotService: screenshotService)
+        return PreferencesPresenter(
+            localAuthProvider: localAuthProvider,
+            remoteAuthProvider: authProviderMainThreadDecorator,
+            screenshotService: screenshotService)
     }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let _ = statusBarItem // trigger icon appear
         terminateLauncherIfNeeded()
         
-        let uploader = ImageUploaderMainThreadDecorator(decoratee: ImgurUploader(client: httpClient, clientId: clientId, builder: MultipartFormBuilder()))
+        var uploader = makeUploader()
+        
+        NotificationCenter.default.addObserver(
+            forName: .userAuthorizationStatusChanged,
+            object: nil,
+            queue: nil
+        ) { [weak self] note in
+            if let u = self?.makeUploader(account: note.object as? Account) {
+                uploader = u
+            }
+        }
+        
+        localAuthProvider.authorize(completion: { [weak self] result in
+            if let account = try? result.get(), let u = self?.makeUploader(account: account) {
+                uploader = u
+            }
+        })
         
         let facade = LocalImageProviderFacade() { [weak self] localImage in
             self?.statusBarItem.button?.startAnimation()
@@ -79,7 +103,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             uploader.upload(localImage) { result in
                 switch (result) {
                 case .success(let remoteImage):
-                    self?.notificationProvider.sendNotification(identifier: "IMAGE_UPLOADED", title: "Image uploaded", text: remoteImage.url.absoluteString)
+                    self?.notificationProvider.sendNotification(
+                        identifier: .imageUploadCompleted,
+                        title: "Image uploaded",
+                        text: remoteImage.url.absoluteString)
                 case .failure(let error):
                     print(error)
                 }
@@ -122,10 +149,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func terminateLauncherIfNeeded() {
         let runningApps = NSWorkspace.shared.runningApplications
-        let isRunning = !runningApps.filter { $0.bundleIdentifier == helperBundleIdentifier }.isEmpty
+        let isRunning = !runningApps.filter {
+            $0.bundleIdentifier == .helperBundleIdentifier
+        }.isEmpty
 
         if isRunning {
             DistributedNotificationCenter.default().post(name: .terminateLauncher, object: Bundle.main.bundleIdentifier!)
         }
+    }
+    
+    private func makeUploader(account: Account? = nil) -> ImageUploader {
+        let auth: Authorization
+        if let account = account {
+            auth = .bearerToken(account.accessToken)
+        } else {
+            auth = .clientId(clientId)
+        }
+        return ImageUploaderMainThreadDecorator(
+            decoratee: ImgurUploader(
+                client: httpClient,
+                auth: auth,
+                builder: MultipartFormBuilder()
+            )
+        )
     }
 }
